@@ -1,6 +1,6 @@
 <template>
     <div class="flex flex-col justify-center items-center">
         <Header />
-        <ChessBoard />
+        <ChessBoard2 />
     </div>
 </template>
