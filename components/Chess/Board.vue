@@ -1,6 +1,7 @@
 <template>
     <div>
         <h1 class="h-16">{{ selectedSquare }}</h1>
+        <h1 class="h-16">{{ highlightedSquares }}</h1>
         <div class="flex flex-col">
             <div v-for="rank, rankIndex in chess.board()" class="flex">
                 <div v-for="file, fileIndex in rank" class="u-tile-size relative"
@@ -23,27 +24,21 @@
 </template>
 
 <script lang="ts" setup>
-import { Chess, SQUARES, type Square } from 'chess.js';
+import { Chess, type Square } from 'chess.js';
 
 const chess = reactive(new Chess());
 const selectedSquare = ref<Square | null>(null);
-const highlightedSquares = ref([]);
+const highlightedSquares = ref<string[]>([]);
 
 const onSquareClick = (square: Square): void => {
     removeHighlighedMoves();
-    if (chess.get(square)) {
-        // Select a Square
+    if (chess.get(square) && chess.get(square).color === chess.turn()) {
         selectedSquare.value = square;
         highlightMoves(square);
-    } else if (selectedSquare.value === square && chess.get(square).color === chess.turn()) {
-        // Reselect a Square
-        selectedSquare.value = square;
-        // highlightMoves(square);
     }
     else {
         try {
             chess.move({ from: <string>selectedSquare.value, to: square });
-
         } catch (e) {
             console.error(e);
         }
@@ -56,12 +51,14 @@ const onSquareClick = (square: Square): void => {
 const highlightMoves = (square: Square): void => {
     for (let i = 0; i < chess.moves({ square: square }).length; i++) {
         document.getElementById(`${(chess.moves({ square: square, verbose: true })[i].to).toString()}-indicator`)?.classList.add('highlighted')
+        highlightedSquares.value.push(`${(chess.moves({ square: square, verbose: true })[i].to).toString()}-indicator`);
     }
 }
 
 const removeHighlighedMoves = (): void => {
-    for (let i = 0; i < SQUARES.length; i++) {
-        document.getElementById(`${SQUARES[i]}-indicator`)?.classList.remove('highlighted');
+    for (let i = 0; i < highlightedSquares.value.length; i++) {
+        document.getElementById(highlightedSquares.value[i])?.classList.remove('highlighted');
     }
+    highlightedSquares.value = [];
 }
 </script>
