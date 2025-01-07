@@ -9,10 +9,13 @@
 </template>
 
 <script lang="ts">
+import { Chess } from 'chess.js';
+
 export default {
   props: {
     square: { type: String, required: true },
-    color: { type: Boolean, required: true }
+    color: { type: Boolean, required: true },
+    chess: {type: Chess}
   }
 };
 </script>
