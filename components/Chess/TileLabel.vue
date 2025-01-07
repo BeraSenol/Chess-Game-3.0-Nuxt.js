@@ -4,7 +4,7 @@
       class="absolute left-0.5 -top-0.5 text-xs md:text-base">
       {{ square.charAt(1) }} </p>
     <p v-if="square.charAt(1) === '1'" :class="color ? 'text-primary-950' : 'text-white'"
-      class="absolute right-0.5 -bottom-0.5 text-xs md:text-base"> {{ square.charAt(0) }} </p>
+      class="absolute right-1 -bottom-0.5 text-xs md:text-base"> {{ square.charAt(0) }} </p>
   </div>
 </template>
 
