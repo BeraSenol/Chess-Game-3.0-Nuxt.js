@@ -15,7 +15,6 @@ export default {
   props: {
     square: { type: String, required: true },
     color: { type: Boolean, required: true },
-    chess: {type: Chess}
   }
 };
 </script>

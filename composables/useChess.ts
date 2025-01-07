@@ -4,6 +4,7 @@ export const useChess = () => {
   const chess = reactive(new Chess());
   const selectedSquare = ref<Square | null>(null);
   const highlightedSquares = ref<string[]>([]);
+  const history = ref<string[]>([]);
 
   function onSquareClick(square: Square): void {
     highlightMoves(square);
@@ -11,8 +12,7 @@ export const useChess = () => {
       selectedSquare.value = square;
     } else {
       try {
-        chess.move({ from: <string>selectedSquare.value, to: square });
-        console.log(chess.ascii())
+        history.value.push(chess.move({ from: <string>selectedSquare.value, to: square }).san)
       } catch (e) {
         console.error(e);
       } finally {
@@ -34,6 +34,7 @@ export const useChess = () => {
 
   return {
     chess,
+    history,
     onSquareClick
   };
 };

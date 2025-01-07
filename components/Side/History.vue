@@ -1,0 +1,21 @@
+<template>
+    <UCard class="w-full bg-gray-200 dark:bg-gray-800 divide-gray-300 dark:divide-gray-700">
+        <template #header>
+            <h1 class="text-center font-semibold text-xl">History</h1>
+        </template>
+        <div class="grid grid-cols-2 w-full">
+            <div v-for="move, i in history" class="flex text-lg">
+                <p v-if="parseInt(i) % 2 === 0" class="font-bold">{{ Math.floor((parseInt(i) + 3) / 2) }}.&nbsp;</p>
+                <p class="font-extralight">{{ move }}</p>
+            </div>
+        </div>
+    </UCard>
+</template>
+
+<script lang="ts">
+export default {
+    props: {
+        history: { type: Object, required: false },
+    }
+};
+</script>

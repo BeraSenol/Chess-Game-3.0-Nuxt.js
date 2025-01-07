@@ -7,8 +7,7 @@
 <script lang="ts">
 export default {
   props: {
-    fen: { type: String, required: false },
-    turn: { type: String, required: true, default: 'w' },
+    turn: { type: String, required: true, default: 'w' }
   }
 };
 </script>
