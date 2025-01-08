@@ -15,15 +15,12 @@
   }
 
   .u-tile-dark {
-    @apply bg-primary-900 hover:bg-primary-700;
+    @apply bg-primary-700 hover:bg-primary-500;
   }
 
-  .u-tile-light-selected {
-    @apply bg-yellow-200 hover:bg-yellow-200;
-  }
-
-  .u-tile-dark-selected {
-    @apply bg-yellow-400 hover:bg-yellow-400;
+  /* BORDER */
+  .u-border-color {
+    @apply border-primary-700;
   }
 
   /* INDICATOR */
