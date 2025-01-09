@@ -6,8 +6,7 @@ export default defineNuxtConfig({
     '@nuxt/ui',
     '@nuxt/image',
     '@vueuse/nuxt',
-    '@nuxt/eslint',
-    '@formkit/auto-animate',
+    '@nuxt/eslint',,
   ],
   css: ['assets/css/main.css'],
 })

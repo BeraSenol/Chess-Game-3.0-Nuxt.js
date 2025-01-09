@@ -1,7 +1,7 @@
 <template>
     <UCard class="w-full bg-gray-200 dark:bg-gray-800 divide-primary-300 dark:divide-primary-700 border-2 u-border-color">
         <template #header>
-            <h1 class="text-center font-semibold text-xl">History</h1>
+            <h1 class="text-center font-semibold text-xl tracking-wide">History</h1>
         </template>
         <div class="grid grid-cols-5 w-full">
             <div v-for="move, i in history" :class="parseInt(i) % 2 === 0 ? 'col-span-2' : 'col-span-3'"

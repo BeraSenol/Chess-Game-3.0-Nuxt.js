@@ -40,13 +40,13 @@
         <div class="flex justify-center">
           <div class="flex flex-col flex-none">
             <div v-for="rank, i of chess.board().reverse()" class="flex">
-              <div v-for="file, j of rank" v-auto-animate class="relative u-tile-size"
+              <div v-for="file, j of rank" class="relative u-tile-size"
                 :key="`${String.fromCharCode(j + 97)}${i + 1}`"
                 :class="chess.squareColor(<Square>`${String.fromCharCode(j + 97)}${i + 1}`) === 'light' ? 'u-tile-light' : 'u-tile-dark'"
                 :id="`${String.fromCharCode(j + 97)}${i + 1}`"
                 @click="onSquareClick(<Square>`${String.fromCharCode(j + 97)}${i + 1}`)">
-                <ChessTileLabel :key="`${String.fromCharCode(j + 97)}${8 - i}-label`"
-                  :square="`${String.fromCharCode(j + 97)}${8 - i}`"
+                <ChessTileLabel :key="`${String.fromCharCode(j + 97)}${i + 1}-label`"
+                  :square="`${String.fromCharCode(j + 97)}${i + 1}`"
                   :color="chess.squareColor(<Square>`${String.fromCharCode(j + 97)}${i + 1}`) === 'light'" />
                 <ChessPiece v-if="file" :key="`${String.fromCharCode(j + 97)}${i + 1}}-piece`"
                   :type="chess.get(<Square>`${String.fromCharCode(j + 97)}${i + 1}`).type"
@@ -60,7 +60,7 @@
         <SideInfo :ascii="chess.fen()" />
       </div>
     </main>
-    <UButton label="Flip" @click="console.log(chess.board().reverse())" />
+    <UButton label="Flip" @click="useAppConfig().ui.primary = 'orange'" />
   </div>
 </template>
 

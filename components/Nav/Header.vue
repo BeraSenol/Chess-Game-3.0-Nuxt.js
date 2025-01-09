@@ -1,8 +1,8 @@
 <template>
-  <div class="flex justify-center items-center w-screen border-b-2 u-border-color h-16 mb-4">
-    <UBadge v-if="!inCheck" variant="subtle" size="lg" color="primary" class="text-lg">{{ turn === 'w' ? 'White' : 'Black' }} to Play</UBadge>
-    <UBadge v-if="inCheck" variant="subtle" size="lg" color="red" class="text-lg">{{ turn === 'w' ? 'White' : 'Black' }}
-      is in Check!</UBadge>
+  <div class="flex justify-around items-center w-screen border-b-2 u-border-color h-16 mb-4">
+    <NavColorPicker />
+    <NavTurnBadge :turn="turn" :in-check="inCheck" />
+    <NavColorPicker />
   </div>
 </template>
 

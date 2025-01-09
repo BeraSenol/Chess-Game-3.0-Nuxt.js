@@ -15,12 +15,12 @@
   }
 
   .u-tile-dark {
-    @apply bg-primary-700 hover:bg-primary-500;
+    @apply bg-primary-800 hover:bg-primary-500;
   }
 
   /* BORDER */
   .u-border-color {
-    @apply border-primary-700;
+    @apply border-primary-800;
   }
 
   /* INDICATOR */
