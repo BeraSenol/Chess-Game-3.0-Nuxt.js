@@ -3,5 +3,14 @@
     <template #header>
       <h1 class="text-center font-semibold text-xl">Info</h1>
     </template>
+    <UButton @click="useChess().flipBoard()">Flip Board</UButton>
   </UCard>
 </template>
+
+<script lang="ts">
+export default {
+  props: {
+    isPlayerWhite: { type: Function }
+  }
+}
+</script>

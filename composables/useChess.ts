@@ -5,6 +5,7 @@ export const useChess = () => {
   const selectedSquare = ref<Square | null>(null);
   const highlightedSquares = ref<string[]>([]);
   const history = ref<string[]>([]);
+  const isPlayerWhite = useState('isPlayerWhite', () => true)
 
   function onSquareClick(square: Square): void {
     highlightMoves(square);
@@ -32,9 +33,15 @@ export const useChess = () => {
     }
   };
 
+  function flipBoard(): void {
+    isPlayerWhite.value = !isPlayerWhite.value;
+  }
+
   return {
     chess,
     history,
-    onSquareClick
+    isPlayerWhite,
+    onSquareClick,
+    flipBoard
   };
 };

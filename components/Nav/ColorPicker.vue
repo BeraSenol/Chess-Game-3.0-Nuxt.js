@@ -1,6 +1,6 @@
 <template>
   <UPopover mode="hover" :popper="{ placement: 'bottom-start' }">
-    <UButton size="lg" class="text-lg text-primary" color="white" trailing-icon="i-heroicons-chevron-down-20-solid">
+    <UButton size="lg" variant="outline" class="text-lg text-primary py-1.5 px-2.5" color="white" trailing-icon="i-heroicons-chevron-down-20-solid">
       <p>Color: <span class="text-primary">{{ capitalize(useAppConfig().ui.primary) }}</span></p>
     </UButton>
     <template #panel="{ close }">

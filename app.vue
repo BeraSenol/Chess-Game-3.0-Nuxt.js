@@ -4,7 +4,7 @@
     <div class="flex justify-around space-x-4 mx-4">
       <SideHistory :history="history" />
       <!-- BOARD FOR WHITE -->
-      <div class="flex justify-center">
+      <div v-if="isPlayerWhite" class="flex justify-center">
         <div class="flex flex-col flex-none">
           <div v-for="rank, i of chess.board()" class="flex">
             <div v-for="file, j of rank" class="relative u-tile-size"
@@ -21,12 +21,13 @@
         </div>
       </div>
       <!-- BOARD FOR BLACK -->
-      <div class="flex justify-center">
+      <div v-if="!isPlayerWhite" class="flex justify-center">
         <div class="flex flex-col flex-none">
           <div v-for="rank, i of chess.board().reverse()" class="flex">
-            <div v-for="file, j of rank" class="relative u-tile-size"
-              :class="chess.squareColor(getSquareObject(i, j, true)) === 'light' ? 'u-tile-light' : 'u-tile-dark'"
-              :id="getSquareString(i, j, false)" @click="onSquareClick(getSquareObject(i, j, false))">
+            <div v-for="file, j of rank.reverse()" class="relative u-tile-size"
+              :class="chess.squareColor(getSquareObject(i, j, false)) === 'light' ? 'u-tile-light' : 'u-tile-dark'"
+              :id="getSquareString(i, j, false)"
+              @click="onSquareClick(getSquareObject(i, j, false)); console.log(getSquareObject(i, j, false))">
               <ChessTileLabel :square="getSquareString(i, j, false)"
                 :color="chess.squareColor(getSquareObject(i, j, false)) === 'light'" :player-white="false" />
               <ChessPiece v-if="file" :key="`${getSquareString(i, j, false)}}-piece`"
@@ -44,14 +45,13 @@
 
 <script lang="ts" setup>
 import type { Square } from 'chess.js';
-const { chess, history, onSquareClick } = useChess();
-const isPlayerWhite: boolean = true;
+const { chess, history, isPlayerWhite, onSquareClick, flipBoard } = useChess();
 
 function getSquareString(i: number, j: number, white: boolean): string {
-  return white ? `${String.fromCharCode(j + 97)}${8 - i}` : `${String.fromCharCode(j + 97)}${i + 1}`;
+  return white ? `${String.fromCharCode(j + 97)}${8 - i}` : `${String.fromCharCode(104 - j)}${i + 1}`;
 }
 
 function getSquareObject(i: number, j: number, white: boolean): Square {
-  return white ? <Square>`${String.fromCharCode(j + 97)}${8 - i}` : <Square>`${String.fromCharCode(j + 97)}${i + 1}`;
+  return white ? <Square>`${String.fromCharCode(j + 97)}${8 - i}` : <Square>`${String.fromCharCode(104 - j)}${i + 1}`;
 }
 </script>
