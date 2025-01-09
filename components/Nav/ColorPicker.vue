@@ -5,13 +5,13 @@
     </UButton>
     <template #panel="{ close }">
       <div class="grid grid-cols-5">
-        <div v-for="color in useAppConfig().ui.colors" class="p-2">
-          <UTooltip :text="capitalize(color)">
-            <UBadge v-if="color !== 'Primary'" :color="color" @click="close(); useAppConfig().ui.primary = color;"
-              size="lg" class="w-8 h-8 p-0">
+        <div v-for="color, i in useAppConfig().ui.colors" class="p-2">
+          <UBadge v-if="color !== 'primary'" :color="color" @click="close(); useAppConfig().ui.primary = color;"
+            size="lg" class="w-8 h-8 p-0">
+            <UTooltip :text="capitalize(color)">
               <NuxtImg src="pieces/pb.svg" alt="pw.svg" class="w-8 h-8" />
-            </UBadge>
-          </UTooltip>
+            </UTooltip>
+          </UBadge>
         </div>
       </div>
     </template>
