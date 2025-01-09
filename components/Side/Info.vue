@@ -3,15 +3,5 @@
     <template #header>
       <h1 class="text-center font-semibold text-xl">Info</h1>
     </template>
-    <p class="">{{ }}</p>
   </UCard>
 </template>
-
-<script lang="ts">
-export default {
-  props: {
-    ascii: { type: String, required: false },
-    gameOver: { type: Boolean, required: false },
-  }
-};
-</script>

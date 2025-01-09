@@ -11,7 +11,7 @@
               :class="chess.squareColor(getSquareObject(i, j, true)) === 'light' ? 'u-tile-light' : 'u-tile-dark'"
               :id="getSquareString(i, j, true)" @click="onSquareClick(getSquareObject(i, j, true))">
               <ChessTileLabel :square="getSquareString(i, j, true)"
-                :color="chess.squareColor(getSquareObject(i, j, true)) === 'light'" />
+                :color="chess.squareColor(getSquareObject(i, j, true)) === 'light'" :player-white="true" />
               <ChessPiece v-if="file" :key="`${getSquareString(i, j, true)}}-piece`"
                 :type="chess.get(getSquareObject(i, j, true)).type"
                 :color="chess.get(getSquareObject(i, j, true)).color" />
@@ -25,10 +25,10 @@
         <div class="flex flex-col flex-none">
           <div v-for="rank, i of chess.board().reverse()" class="flex">
             <div v-for="file, j of rank" class="relative u-tile-size"
-              :class="chess.squareColor(getSquareObject(i, j, false)) === 'light' ? 'u-tile-light' : 'u-tile-dark'"
+              :class="chess.squareColor(getSquareObject(i, j, true)) === 'light' ? 'u-tile-light' : 'u-tile-dark'"
               :id="getSquareString(i, j, false)" @click="onSquareClick(getSquareObject(i, j, false))">
               <ChessTileLabel :square="getSquareString(i, j, false)"
-                :color="chess.squareColor(getSquareObject(i, j, false)) === 'light'" />
+                :color="chess.squareColor(getSquareObject(i, j, false)) === 'light'" :player-white="false" />
               <ChessPiece v-if="file" :key="`${getSquareString(i, j, false)}}-piece`"
                 :type="chess.get(getSquareObject(i, j, false)).type"
                 :color="chess.get(getSquareObject(i, j, false)).color" />
@@ -37,7 +37,7 @@
           </div>
         </div>
       </div>
-      <SideInfo :ascii="chess.fen()" />
+      <SideInfo />
     </div>
   </main>
 </template>
@@ -45,6 +45,7 @@
 <script lang="ts" setup>
 import type { Square } from 'chess.js';
 const { chess, history, onSquareClick } = useChess();
+const isPlayerWhite: boolean = true;
 
 function getSquareString(i: number, j: number, white: boolean): string {
   return white ? `${String.fromCharCode(j + 97)}${8 - i}` : `${String.fromCharCode(j + 97)}${i + 1}`;
