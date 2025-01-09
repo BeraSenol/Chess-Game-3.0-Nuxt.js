@@ -3,8 +3,8 @@
         <template #header>
             <h1 class="text-center font-semibold text-xl tracking-wide">History</h1>
         </template>
-        <div class="grid grid-cols-5 w-full">
-            <div v-for="move, i in history" :class="parseInt(i) % 2 === 0 ? 'col-span-2' : 'col-span-3'"
+        <div class="grid grid-cols-2 w-full">
+            <div v-for="move, i in history" 
                 class="flex text-lg">
                 <p v-if="parseInt(i) % 2 === 0" class=" font-bold mr-2">{{ Math.floor((parseInt(i) + 3) / 2) }}.</p>
                 <p class="font-extralight">{{ move }}</p>

@@ -1,12 +1,13 @@
 <template>
   <UPopover mode="hover" :popper="{ placement: 'bottom-start' }">
-    <UButton size="lg" variant="outline" class="text-lg text-primary py-1.5 px-2.5" color="white" trailing-icon="i-heroicons-chevron-down-20-solid">
+    <UButton size="lg" variant="solid" class="text-lg text-primary py-1.5 px-2.5" color="white"
+      trailing-icon="i-heroicons-chevron-down-20-solid">
       <p>Color: <span class="text-primary">{{ capitalize(useAppConfig().ui.primary) }}</span></p>
     </UButton>
     <template #panel="{ close }">
       <div class="grid grid-cols-5">
         <div v-for="color, i in useAppConfig().ui.colors" class="p-2">
-          <UBadge v-if="color !== 'primary'" :color="color" @click="close(); useAppConfig().ui.primary = color;"
+          <UBadge v-if="color !== 'primary'" :color="color" @click="useAppConfig().ui.primary = color; close();"
             size="lg" class="w-8 h-8 p-0">
             <UTooltip :text="capitalize(color)">
               <NuxtImg src="pieces/pb.svg" alt="pw.svg" class="w-8 h-8" />

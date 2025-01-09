@@ -1,11 +1,11 @@
-import { Chess, type Square } from 'chess.js';
+import { Chess, type Piece, type Square } from 'chess.js';
 
 export const useChess = () => {
   const chess = reactive(new Chess());
   const selectedSquare = ref<Square | null>(null);
   const highlightedSquares = ref<string[]>([]);
   const history = ref<string[]>([]);
-  const isPlayerWhite = useState('isPlayerWhite', () => true)
+  const isPlayerWhite = useState<boolean>('isPlayerWhite', () => true);
 
   function onSquareClick(square: Square): void {
     highlightMoves(square);
@@ -22,6 +22,14 @@ export const useChess = () => {
     }
   };
 
+  function chessGet(sqaure: Square): Piece {
+    return chess.get(sqaure);
+  }
+
+  function flipBoard(): void {
+    isPlayerWhite.value = !isPlayerWhite.value;
+  }
+
   function highlightMoves(square: Square): void {
     for (let i = 0; i < highlightedSquares.value.length; i++) {
       document.getElementById(highlightedSquares.value[i])?.classList.remove('highlighted');
@@ -33,15 +41,12 @@ export const useChess = () => {
     }
   };
 
-  function flipBoard(): void {
-    isPlayerWhite.value = !isPlayerWhite.value;
-  }
-
   return {
     chess,
     history,
     isPlayerWhite,
     onSquareClick,
+    chessGet,
     flipBoard
   };
 };
