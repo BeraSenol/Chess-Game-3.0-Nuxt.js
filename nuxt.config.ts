@@ -5,7 +5,10 @@ export default defineNuxtConfig({
   modules: [
     '@nuxt/ui',
     '@nuxt/image',
-    '@nuxt/eslint'
+    '@nuxt/eslint',
+    '@vueuse/nuxt',
+    '@vite-pwa/nuxt',
+    '@nuxtjs/html-validator',
   ],
   css: ['assets/css/main.css'],
 })

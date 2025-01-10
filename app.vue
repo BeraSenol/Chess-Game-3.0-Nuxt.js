@@ -1,8 +1,7 @@
 <template>
-  <main class="bg-gray-100 dark:bg-gray-900 min-h-screen size-full">
+  <main class="bg-gray-100 dark:bg-gray-900">
     <NavHeader :turn="chess.turn()" :in-check="chess.isCheck()" />
     <div class="flex justify-around space-x-4 mx-4">
-      <SideHistory :history="history" />
       <!-- BOARD FOR WHITE -->
       <div v-if="isPlayerWhite" class="flex justify-center">
         <div class="flex flex-col flex-none">
@@ -38,14 +37,15 @@
           </div>
         </div>
       </div>
-      <SideInfo />
+      <SideInformation :historySan="historySan" :historyLan="historyLan" :history-capture-white="historyCaptureWhite"
+        :history-capture-black="historyCaptureBlack" />
     </div>
   </main>
 </template>
 
 <script lang="ts" setup>
 import type { Square } from 'chess.js';
-const { chess, history, isPlayerWhite, chessGet, onSquareClick } = useChess();
+const { chess, historySan, historyLan, historyCaptureWhite, historyCaptureBlack, isPlayerWhite, chessGet, onSquareClick } = useChess();
 
 function getSquare(i: number, j: number, white: boolean, object: boolean): any {
   if (object) {
@@ -53,4 +53,7 @@ function getSquare(i: number, j: number, white: boolean, object: boolean): any {
   }
   return white ? `${String.fromCharCode(j + 97)}${8 - i}` : <Square>`${String.fromCharCode(104 - j)}${i + 1}`;
 }
+
+useHead({htmlAttrs: {lang: 'en'}});
+useSeoMeta({title: 'Pretty Chess'})
 </script>

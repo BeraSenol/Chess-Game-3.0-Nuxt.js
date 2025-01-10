@@ -9,16 +9,12 @@ git clone https://github.com/BeraSenol/Chess-Game-Java-2.0.git
 Make sure to install dependencies:
 
 ```bash
-# npm
 npm install
 
-# pnpm
 pnpm install
 
-# yarn
 yarn install
 
-# bun
 bun install
 ```
 
@@ -27,16 +23,12 @@ bun install
 Start the development server on `http://localhost:3000`:
 
 ```bash
-# npm
 npm run dev
 
-# pnpm
 pnpm dev
 
-# yarn
 yarn dev
 
-# bun
 bun run dev
 ```
 
@@ -45,32 +37,24 @@ bun run dev
 Build the application for production:
 
 ```bash
-# npm
 npm run build
 
-# pnpm
 pnpm build
 
-# yarn
 yarn build
 
-# bun
 bun run build
 ```
 
 Locally preview production build:
 
 ```bash
-# npm
 npm run preview
 
-# pnpm
 pnpm preview
 
-# yarn
 yarn preview
 
-# bun
 bun run preview
 ```
 
@@ -86,13 +70,21 @@ Fully functional chess game built in Nuxt.js, Vue.js and Tailwind.css
 <br/>
 <br/>
 
+# Dependencies/Modules
+The app uses [chess.js](https://github.com/jhlywa/chess.js) under the hood, a headless library for move validation, check mate detection etc.
+
+The app is a implementation of HTML elements to their corresponding values within [chess.board()](https://github.com/jhlywa/chess.js?tab=readme-ov-file#board), reactivity provided by Nuxt/Vue.
+
 # Features
 
 - [x] Chess Board
-- [x] Reactive Piece Movement
+- [x] Piece Movement
 - [x] Move History
 - [x] ColorPicker
 - [x] Board Flip
+- [ ] Undo/Redo
+- [ ] Importing Position
+- [ ] Restore Board
       <br>
       <br>
 
@@ -128,8 +120,13 @@ Clicking on piece will reveal it's legal moves, click on a highlited tile to mov
 
 - - `History.vue` Shows each move in Standard Algebraic Notation.
 - - `Info.vue` Dynamically rendered images based on type & color.
+
+`/composables`
+
+- `/useChess.ts` Reactive chess objects available at top level.
   <br>
   <br>
+
 
 # Acknowledgments
 

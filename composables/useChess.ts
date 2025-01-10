@@ -1,10 +1,13 @@
-import { Chess, type Piece, type Square } from 'chess.js';
+import { Chess, type Piece, type PieceSymbol, type Square } from 'chess.js';
 
 export const useChess = () => {
   const chess = reactive(new Chess());
   const selectedSquare = ref<Square | null>(null);
   const highlightedSquares = ref<string[]>([]);
-  const history = ref<string[]>([]);
+  const historySan = ref<string[]>([]);
+  const historyLan = ref<string[]>([]);
+  const historyCaptureWhite = ref<string[]>([]);
+  const historyCaptureBlack = ref<string[]>([]);
   const isPlayerWhite = useState<boolean>('isPlayerWhite', () => true);
 
   function onSquareClick(square: Square): void {
@@ -13,7 +16,16 @@ export const useChess = () => {
       selectedSquare.value = square;
     } else {
       try {
-        history.value.push(chess.move({ from: <string>selectedSquare.value, to: square }).san)
+        const move = chess.move({ from: <string>selectedSquare.value, to: square });
+        historySan.value.push(move.san);
+        historyLan.value.push(move.lan);
+        if (move.captured) {
+          if (move.color === <PieceSymbol>'b') {
+            historyCaptureWhite.value.push(move.captured);
+          } else {
+            historyCaptureBlack.value.push(move.captured);
+          }
+        }
       } catch (e) {
         console.error(e);
       } finally {
@@ -43,7 +55,10 @@ export const useChess = () => {
 
   return {
     chess,
-    history,
+    historySan,
+    historyLan,
+    historyCaptureWhite,
+    historyCaptureBlack,
     isPlayerWhite,
     onSquareClick,
     chessGet,
