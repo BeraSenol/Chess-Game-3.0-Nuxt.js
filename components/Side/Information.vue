@@ -2,25 +2,25 @@
     <UCard
         class="w-full bg-gray-200 dark:bg-gray-800 divide-primary-300 dark:divide-primary-700 border-2 u-border-color">
         <template #header>
-            <SideCaptures :history-capture-white="historyCaptureWhite" :history-capture-black="historyCaptureBlack" />
+            <div class="h-10">
+                <SideCaptures :captures-white="capturesWhite" :captures-black="capturesBlack" />
+            </div>
         </template>
-        <div class="h-max">
-            <UTabs :items="items" class="w-full">
-                <template #item="{ item }">
-                    <UCard>
-                        <template #header>
-                            <p>{{ item.description }}</p>
-                        </template>
-                        <div v-if="item.key === 'san'">
-                            <SideHistory :history="historySan" />
-                        </div>
-                        <div v-else-if="item.key === 'lan'">
-                            <SideHistory :history="historyLan" />
-                        </div>
-                    </UCard>
-                </template>
-            </UTabs>
-        </div>
+        <UTabs :items="items" class="w-full">
+            <template #item="{ item }">
+                <UCard>
+                    <template #header>
+                        <p>{{ item.description }}</p>
+                    </template>
+                    <div v-if="item.key === 'san'">
+                        <SideHistory :history="san" />
+                    </div>
+                    <div v-else-if="item.key === 'lan'">
+                        <SideHistory :history="lan" />
+                    </div>
+                </UCard>
+            </template>
+        </UTabs>
         <template #footer>
             <UButton @click="useChess().flipBoard()">Flip Board</UButton>
         </template>
@@ -43,10 +43,10 @@ const items = [{
 <script lang="ts">
 export default {
     props: {
-        historySan: { type: Object, required: false },
-        historyLan: { type: Object, required: false },
-        historyCaptureWhite: { type: Object, required: false },
-        historyCaptureBlack: { type: Object, required: false },
+        san: { type: Object, required: false },
+        lan: { type: Object, required: false },
+        capturesWhite: { type: Object, required: false },
+        capturesBlack: { type: Object, required: false },
     }
 };
 </script>

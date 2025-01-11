@@ -21,8 +21,6 @@
   "devDependencies": {
     "@nuxt/eslint": "^0.7.5",
     "@nuxt/image": "1.9.0",
-    "@nuxtjs/html-validator": "^1.8.2",
-    "@vite-pwa/nuxt": "^0.10.6",
     "@vueuse/nuxt": "^12.4.0"
   }
 }

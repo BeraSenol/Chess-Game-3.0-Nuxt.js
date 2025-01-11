@@ -1,9 +1,9 @@
 <template>
-  <main class="bg-gray-100 dark:bg-gray-900">
+  <main class="bg-gray-200 dark:bg-gray-800 min-h-screen">
     <NavHeader :turn="chess.turn()" :in-check="chess.isCheck()" />
     <div class="flex justify-around space-x-4 mx-4">
       <!-- BOARD FOR WHITE -->
-      <div v-if="isPlayerWhite" class="flex justify-center">
+      <div v-if="isBoardFlipped" class="flex justify-center">
         <div class="flex flex-col flex-none">
           <div v-for="rank, i of chess.board()" class="flex">
             <div v-for="file, j of rank" class="relative u-tile-size"
@@ -20,7 +20,7 @@
         </div>
       </div>
       <!-- BOARD FOR BLACK -->
-      <div v-if="!isPlayerWhite" class="flex justify-center">
+      <div v-if="!isBoardFlipped" class="flex justify-center">
         <div class="flex flex-col flex-none">
           <div v-for="rank, i of chess.board().reverse()" class="flex">
             <div v-for="file, j of rank.reverse()" class="relative u-tile-size"
@@ -37,23 +37,22 @@
           </div>
         </div>
       </div>
-      <SideInformation :historySan="historySan" :historyLan="historyLan" :history-capture-white="historyCaptureWhite"
-        :history-capture-black="historyCaptureBlack" />
+      <SideInformation :san="san" :lan="lan" :captures-white="capturesWhite" :captures-black="capturesBlack" />
     </div>
   </main>
 </template>
 
 <script lang="ts" setup>
 import type { Square } from 'chess.js';
-const { chess, historySan, historyLan, historyCaptureWhite, historyCaptureBlack, isPlayerWhite, chessGet, onSquareClick } = useChess();
+const { chess, san, lan, capturesWhite, capturesBlack, isBoardFlipped, chessGet, onSquareClick } = useChess();
 
 function getSquare(i: number, j: number, white: boolean, object: boolean): any {
   if (object) {
     return white ? <Square>`${String.fromCharCode(j + 97)}${8 - i}` : <Square>`${String.fromCharCode(104 - j)}${i + 1}`;
   }
   return white ? `${String.fromCharCode(j + 97)}${8 - i}` : <Square>`${String.fromCharCode(104 - j)}${i + 1}`;
-}
+};
 
 useHead({htmlAttrs: {lang: 'en'}});
-useSeoMeta({title: 'Pretty Chess'})
+useSeoMeta({title: 'Pretty Chess'});
 </script>

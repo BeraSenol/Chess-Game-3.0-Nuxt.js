@@ -1,14 +1,14 @@
-import { Chess, type Piece, type PieceSymbol, type Square } from 'chess.js';
+import { Chess, type Piece, type Square } from 'chess.js';
 
 export const useChess = () => {
   const chess = reactive(new Chess());
   const selectedSquare = ref<Square | null>(null);
   const highlightedSquares = ref<string[]>([]);
-  const historySan = ref<string[]>([]);
-  const historyLan = ref<string[]>([]);
-  const historyCaptureWhite = ref<string[]>([]);
-  const historyCaptureBlack = ref<string[]>([]);
-  const isPlayerWhite = useState<boolean>('isPlayerWhite', () => true);
+  const san = ref<string[]>([]);
+  const lan = ref<string[]>([]);
+  const capturesWhite = ref<string[]>([]);
+  const capturesBlack = ref<string[]>([]);
+  const isBoardFlipped = useState<boolean>('isBoardFlipped', () => true);
 
   function onSquareClick(square: Square): void {
     highlightMoves(square);
@@ -17,14 +17,10 @@ export const useChess = () => {
     } else {
       try {
         const move = chess.move({ from: <string>selectedSquare.value, to: square });
-        historySan.value.push(move.san);
-        historyLan.value.push(move.lan);
+        san.value.push(move.san);
+        lan.value.push(move.lan);
         if (move.captured) {
-          if (move.color === <PieceSymbol>'b') {
-            historyCaptureWhite.value.push(move.captured);
-          } else {
-            historyCaptureBlack.value.push(move.captured);
-          }
+          move.color.toString() === 'b' ? capturesWhite.value.push(move.captured) : capturesBlack.value.push(move.captured);
         }
       } catch (e) {
         console.error(e);
@@ -39,7 +35,7 @@ export const useChess = () => {
   }
 
   function flipBoard(): void {
-    isPlayerWhite.value = !isPlayerWhite.value;
+    isBoardFlipped.value = !isBoardFlipped.value;
   }
 
   function highlightMoves(square: Square): void {
@@ -55,11 +51,11 @@ export const useChess = () => {
 
   return {
     chess,
-    historySan,
-    historyLan,
-    historyCaptureWhite,
-    historyCaptureBlack,
-    isPlayerWhite,
+    san,
+    lan,
+    capturesWhite,
+    capturesBlack,
+    isBoardFlipped,
     onSquareClick,
     chessGet,
     flipBoard

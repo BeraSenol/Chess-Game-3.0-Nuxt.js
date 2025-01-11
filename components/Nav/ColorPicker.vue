@@ -1,8 +1,8 @@
 <template>
-  <UPopover mode="hover" :popper="{ placement: 'bottom-start' }">
-    <UButton size="lg" variant="solid" class="text-lg text-primary py-1.5 px-2.5" color="white"
-      trailing-icon="i-heroicons-chevron-down-20-solid">
-      <p>Color: <span class="text-primary">{{ capitalize(useAppConfig().ui.primary) }}</span></p>
+  <UPopover :popper="{ placement: 'bottom-start' }" :ui="{ background: 'bg-white dark:bg-gray-800' }">
+    <UButton size="lg" class="text-lg py-1.5 px-2.5" color="white" trailing-icon="i-heroicons-chevron-down-20-solid"
+      :ui="{ color: { white: { solid: 'dark:bg-gray-800' } } }">
+      Color: <span class="text-primary">{{ capitalize(useAppConfig().ui.primary) }}</span>
     </UButton>
     <template #panel="{ close }">
       <div class="grid grid-cols-5">
