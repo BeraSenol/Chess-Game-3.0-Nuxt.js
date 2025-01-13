@@ -1,6 +1,6 @@
 <template>
-  <UButton class="text-lg py-1.5" size="lg" @click="startTimer()"> {{ Math.floor(seconds / 60) }} : {{ (seconds %
-    60).toString().padStart(2, '0') }}</UButton class="text-lg">
+  <UBadge :variant="useColorMode().value === 'light' ? 'solid' : 'soft'" class="text-lg" size="lg" @click="startTimer()"> {{ Math.floor(seconds / 60) }} : {{ (seconds %
+    60).toString().padStart(2, '0') }}</UBadge>
 </template>
 
 <script lang="ts" setup>

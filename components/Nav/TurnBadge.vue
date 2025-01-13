@@ -1,8 +1,9 @@
 <template>
-  <UBadge v-if="!inCheck" variant="solid" size="lg" :color="turn === 'w' ? 'black' : 'white'" class="text-lg">{{ turn ===
-    'w' ? 'White' :
-    'Black' }} to Play</UBadge>
-  <UBadge v-if="inCheck" variant="solid" size="lg" color="red" class="text-lg">{{ turn === 'w' ? 'White' : 'Black' }}
+  <UBadge v-if="!inCheck" :variant="useColorMode().value === 'light' ? 'solid' : 'soft'" size="lg" color="primary"
+    class="text-lg">{{ turn
+      === 'w' ? 'White' : 'Black' }} to Play</UBadge>
+  <UBadge v-if="inCheck" :variant="useColorMode().value === 'light' ? 'solid' : 'soft'" size="lg" color="red"
+    class="text-lg">{{ turn === 'w' ? 'White' : 'Black' }}
     is in Check!</UBadge>
 </template>
 

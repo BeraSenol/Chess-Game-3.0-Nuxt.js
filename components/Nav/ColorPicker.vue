@@ -1,12 +1,12 @@
 <template>
-  <UPopover :popper="{ placement: 'bottom-start' }" :ui="{ background: 'bg-gray-200 dark:bg-gray-800' }">
-    <UButton size="lg" class="text-lg py-1.5 px-2.5" color="white" trailing-icon="i-heroicons-chevron-down-20-solid"
-      :ui="{ color: { white: { solid: 'bg-gray-200 dark:bg-gray-800' } } }">
-      Color: <span class="text-primary">{{ capitalize(useAppConfig().ui.primary) }}</span>
+  <UPopover :popper="{ placement: 'bottom-start' }">
+    <UButton size="lg":variant="useColorMode().value === 'light' ? 'solid' : 'soft'" class="text-lg py-1.5 px-2.5" trailing-icon="i-heroicons-chevron-down-20-solid">
+      {{ capitalize(useAppConfig().ui.primary) }}
     </UButton>
     <template #panel="{ close }">
-      <div class="grid grid-cols-5">
-        <div v-for="color in useAppConfig().ui.colors" class="p-2" @click="useAppConfig().ui.primary = color; close();">
+      <div class="grid grid-cols-5 pt-1.5">
+        <div v-for="color in useAppConfig().ui.colors" class="p-1 px-2"
+          @click="useAppConfig().ui.primary = color; close();">
           <UBadge v-if="color !== 'primary'" :color="color" size="lg" class="w-8 h-8 p-0">
             <UTooltip :text="capitalize(color)">
               <NuxtImg src="pieces/pb.svg" alt="pw.svg" class="w-8 h-8" />

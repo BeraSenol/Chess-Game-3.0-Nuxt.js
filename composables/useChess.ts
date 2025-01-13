@@ -7,6 +7,7 @@ export const useChess = () => {
   const highlightedSquares = ref<string[]>([]);
   const san = ref<string[]>([]);
   const lan = ref<string[]>([]);
+  const fen = ref<string[]>([chess.fen()]);
   const capturesWhite = ref<string[]>([]);
   const capturesBlack = ref<string[]>([]);
   const isBoardFlipped = useState<boolean>('isBoardFlipped', () => true);
@@ -20,6 +21,7 @@ export const useChess = () => {
         const move = chess.move({ from: <string>selectedSquare.value, to: square });
         san.value.push(move.san);
         lan.value.push(move.lan);
+        fen.value.push(chess.fen());
         if (move.captured) {
           move.color === 'b' ? capturesWhite.value.push(move.captured) : capturesBlack.value.push(move.captured);
         }
@@ -47,21 +49,14 @@ export const useChess = () => {
   }
 
   function highlightMoves(square: Square): void {
-    highlightedSquares.value.forEach((squareId) => {
-      const element = document.getElementById(squareId);
-      if (element) {
-        element.classList.remove('highlighted');
-      }
-    });
+    highlightedSquares.value.forEach((squareId) => { document.getElementById(squareId)?.classList.remove('highlighted') });
     highlightedSquares.value = [];
     const moves = chess.moves({ square, verbose: true });
     moves.forEach((move) => {
       const indicatorId = `${move.to}-indicator`;
       const element = document.getElementById(indicatorId);
-      if (element) {
-        element.classList.add('highlighted');
-        highlightedSquares.value.push(indicatorId);
-      }
+      element?.classList.add('highlighted');
+      highlightedSquares.value.push(indicatorId);
     });
   };
 
@@ -70,6 +65,7 @@ export const useChess = () => {
     chessboard,
     san,
     lan,
+    fen,
     capturesWhite,
     capturesBlack,
     isBoardFlipped,

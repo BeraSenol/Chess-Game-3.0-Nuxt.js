@@ -1,14 +1,14 @@
 <template>
-  <div class="flex divide-x h-10 divide-primary px-5">
-    <div class="flex w-1/2  translate-x-5">
+  <div class="flex divide-x-2 h-10 px-5 u-divide-color">
+    <div class="flex basis-1/2">
       <NuxtImg v-for="capture in capturesWhite" :src="`/pieces/${capture}w.svg`"
         :alt="`${capture}${capture.turn === 'w' ? 'b' : 'w'}.svg`" :class="getFlexOrderWhite(capture)"
-        class="w-10 h-10" />
+        class="w-10 h-10 -ml-4" />
     </div>
-    <div class="flex w-1/2  translate-x-5 justify-end">
+    <div class="flex basis-1/2 justify-end">
       <NuxtImg v-for="capture in capturesBlack" :src="`/pieces/${capture}b.svg`"
         :alt="`${capture}${capture.turn === 'w' ? 'b' : 'w'}.svg`" :class="getFlexOrderBlack(capture)"
-        class="w-10 h-10" />
+        class="w-10 h-10 -mr-4" style="filter: drop-shadow(0px 0px 1px rgb(255 255 255))" />
     </div>
   </div>
 </template>

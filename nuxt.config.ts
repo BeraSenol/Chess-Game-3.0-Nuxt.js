@@ -9,4 +9,7 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
   ],
   css: ['assets/css/main.css'],
+  colorMode: {
+    preference: 'dark'
+  }
 })

@@ -1,6 +1,6 @@
 <template>
-  <div class="flex flex-wrap content-start h-96 overflow-auto">
-    <p v-for="move, i in history" class="text-lg w-1/2 h-10">
+  <div class="flex flex-wrap content-start overflow-auto" style="height: 32rem;">
+    <p v-for="move, i in history" class="text-lg w-1/2 h-8">
         <span v-if="parseInt(i) % 2 === 0" class="mr-4">{{ Math.floor((parseInt(i) + 3) / 2) }}.</span><span
           class="font-extralight">{{ move }}</span>
     </p>
