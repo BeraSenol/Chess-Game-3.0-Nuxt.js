@@ -22,7 +22,7 @@
   }
 
   .u-border-color {
-    @apply border-primary-800;
+    @apply border-primary-600 dark:border-primary-800;
   }
 }
 
@@ -37,7 +37,11 @@
     @apply bg-neutral-200 dark:bg-gray-900;
   }
 
+  .u-bg-200 {
+    @apply bg-neutral-300 dark:bg-gray-800;
+  }
+
   .u-divide-color {
-    @apply divide-primary-800;
+    @apply divide-primary-600 dark:divide-primary-800;
   }
 }

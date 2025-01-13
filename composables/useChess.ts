@@ -7,7 +7,7 @@ export const useChess = () => {
   const highlightedSquares = ref<string[]>([]);
   const san = ref<string[]>([]);
   const lan = ref<string[]>([]);
-  const fen = ref<string[]>([chess.fen()]);
+  const fen = computed(() => chess.fen())
   const capturesWhite = ref<string[]>([]);
   const capturesBlack = ref<string[]>([]);
   const isBoardFlipped = useState<boolean>('isBoardFlipped', () => true);
@@ -21,7 +21,6 @@ export const useChess = () => {
         const move = chess.move({ from: <string>selectedSquare.value, to: square });
         san.value.push(move.san);
         lan.value.push(move.lan);
-        fen.value.push(chess.fen());
         if (move.captured) {
           move.color === 'b' ? capturesWhite.value.push(move.captured) : capturesBlack.value.push(move.captured);
         }

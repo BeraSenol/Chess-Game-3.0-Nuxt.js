@@ -1,6 +1,7 @@
 <template>
-  <main class="u-bg-100 h-screen overflow-y-hidden overscroll-none">
+  <main class="u-bg-100 h-screen overflow-y-hidden overscroll-none transition-all">
     <Navigation :turn="chess.turn()" :in-check="chess.isCheck()" />
+    <UNotifications />
     <div class="flex justify-around mx-4 space-x-4">
       <!-- BOARD FOR WHITE -->
       <div v-if="isBoardFlipped" class="flex justify-center select-none">
@@ -43,8 +44,6 @@
 </template>
 
 <script lang="ts" setup>
-import type { Square } from 'chess.js';
-
 const { chess, chessboard, san, lan, fen, capturesWhite, capturesBlack, isBoardFlipped, chessGet, onSquareClick, getSquare } = useChess();
 useHead({ htmlAttrs: { lang: 'en' } });
 useSeoMeta({ title: 'Pretty Chess' });

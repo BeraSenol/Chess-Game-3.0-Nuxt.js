@@ -1,5 +1,6 @@
 <template>
-    <div class="w-full relative rounded-lg divide-y-2 u-divide-color u-border u-border-color" :ui="{ divide: 'divide-y-2' }">
+    <div class="w-full relative rounded-lg divide-y-2 u-divide-color u-border u-border-color"
+        :ui="{ divide: 'divide-y-2' }">
         <UContainer class="h-10 my-4">
             <InfoCaptures :captures-white="capturesWhite" :captures-black="capturesBlack" />
         </UContainer>
@@ -7,7 +8,7 @@
             <template #item="{ item }">
                 <UCard>
                     <template #header>
-                        <p class="text-center">{{ item.description }}</p>
+                        <p class="text-lg text-center">{{ item.description }}</p>
                     </template>
                     <div v-if="item.key === 'san'">
                         <InfoMoveHistory :history="san" />
@@ -16,20 +17,23 @@
                         <InfoMoveHistory :history="lan" />
                     </div>
                     <div v-else-if="item.key === 'fen'">
-                        <InfoFenHistory :fen="fen" />
+                        <InfoFen :fen="fen" />
                     </div>
                 </UCard>
             </template>
         </UTabs>
-       <div class="absolute bottom-0 w-full p-4">
-        <UButton variant="soft" icon="i-material-symbols:sync" :trailing="true" @click="useChess().flipBoard()">Flip
-            Board</UButton>
-       </div>
+        <div class="absolute bottom-0 w-full p-4">
+            <UTooltip text="Flip Chessboard" class="flex justify-center">
+                <UButton size="xl" variant="soft" icon="i-material-symbols-sync" :trailing="true"
+                    @click="useChess().flipBoard()" />
+            </UTooltip>
+        </div>
     </div>
 </template>
 
 
 <script lang="ts" setup>
+const toast = useToast();
 const items = [{
     key: 'san',
     label: 'SAN',
@@ -50,9 +54,9 @@ export default {
     props: {
         san: { type: Array, required: false },
         lan: { type: Array, required: false },
-        fen: { type: Array, required: false },
-        capturesWhite: { type: Object, required: false },
-        capturesBlack: { type: Object, required: false },
+        fen: { type: String, required: false },
+        capturesWhite: { type: Array, required: false },
+        capturesBlack: { type: Array, required: false },
     }
 };
 </script>
