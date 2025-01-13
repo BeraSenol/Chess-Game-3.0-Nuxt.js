@@ -1,7 +1,9 @@
 <template>
   <div class="flex justify-around items-center w-screen border-b-2 u-border-color h-16 mb-4">
     <NavColorPicker />
+    <NavTimeBadge/>
     <NavTurnBadge :turn="turn" :in-check="inCheck" />
+    <NavTimeBadge/>
     <NavColorPicker />
   </div>
 </template>

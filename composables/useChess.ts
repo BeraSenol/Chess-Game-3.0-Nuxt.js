@@ -2,6 +2,7 @@ import { Chess, type Piece, type Square } from 'chess.js';
 
 export const useChess = () => {
   const chess = reactive(new Chess());
+  const chessboard = computed(() => chess.board());
   const selectedSquare = ref<Square | null>(null);
   const highlightedSquares = ref<string[]>([]);
   const san = ref<string[]>([]);
@@ -20,7 +21,7 @@ export const useChess = () => {
         san.value.push(move.san);
         lan.value.push(move.lan);
         if (move.captured) {
-          move.color.toString() === 'b' ? capturesWhite.value.push(move.captured) : capturesBlack.value.push(move.captured);
+          move.color === 'b' ? capturesWhite.value.push(move.captured) : capturesBlack.value.push(move.captured);
         }
       } catch (e) {
         console.error(e);
@@ -28,6 +29,13 @@ export const useChess = () => {
         selectedSquare.value = null;
       }
     }
+  };
+
+  function getSquare(i: number, j: number, white: boolean, object: boolean): any {
+    if (object) {
+      return white ? <Square>`${String.fromCharCode(j + 97)}${8 - i}` : <Square>`${String.fromCharCode(104 - j)}${i + 1}`;
+    }
+    return white ? `${String.fromCharCode(j + 97)}${8 - i}` : <Square>`${String.fromCharCode(104 - j)}${i + 1}`;
   };
 
   function chessGet(sqaure: Square): Piece {
@@ -39,24 +47,34 @@ export const useChess = () => {
   }
 
   function highlightMoves(square: Square): void {
-    for (let i = 0; i < highlightedSquares.value.length; i++) {
-      document.getElementById(highlightedSquares.value[i])?.classList.remove('highlighted');
-    }
+    highlightedSquares.value.forEach((squareId) => {
+      const element = document.getElementById(squareId);
+      if (element) {
+        element.classList.remove('highlighted');
+      }
+    });
     highlightedSquares.value = [];
-    for (let i = 0; i < chess.moves({ square: square }).length; i++) {
-      document.getElementById(`${chess.moves({ square: square, verbose: true })[i].to}-indicator`)?.classList.add('highlighted');
-      highlightedSquares.value.push(`${chess.moves({ square: square, verbose: true })[i].to}-indicator`);
-    }
+    const moves = chess.moves({ square, verbose: true });
+    moves.forEach((move) => {
+      const indicatorId = `${move.to}-indicator`;
+      const element = document.getElementById(indicatorId);
+      if (element) {
+        element.classList.add('highlighted');
+        highlightedSquares.value.push(indicatorId);
+      }
+    });
   };
 
   return {
     chess,
+    chessboard,
     san,
     lan,
     capturesWhite,
     capturesBlack,
     isBoardFlipped,
     onSquareClick,
+    getSquare,
     chessGet,
     flipBoard
   };
