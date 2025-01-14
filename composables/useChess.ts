@@ -1,5 +1,5 @@
 import { Chess, type Piece, type Square } from 'chess.js';
-import GameOverModal from '~/components/GameOverModal.vue';
+import ModalGameOver from '~/components/Modal/GameOver.vue';
 
 export const useChess = () => {
   const chess = reactive(new Chess());
@@ -11,6 +11,9 @@ export const useChess = () => {
   const capturesWhite = ref<string[]>([]);
   const capturesBlack = ref<string[]>([]);
   const isBoardFlipped = useState<boolean>('isBoardFlipped', () => true);
+  const isCheckmate = computed(() => chess.isCheckmate());
+  const isStalemate = computed(() => chess.isStalemate());
+  const turn = computed(() => chess.turn());
 
   const selectedSquare = ref<Square | null>(null);
   const highlightedSquares = ref<string[]>([]);
@@ -26,6 +29,9 @@ export const useChess = () => {
         lan.value.push(move.lan);
         if (move.captured) {
           move.color === 'b' ? capturesWhite.value.push(move.captured) : capturesBlack.value.push(move.captured);
+        }
+        if (chess.isGameOver()) {
+          gameOver();
         }
       } catch (e) {
         console.error(e);
@@ -50,6 +56,14 @@ export const useChess = () => {
     isBoardFlipped.value = !isBoardFlipped.value;
   }
 
+  function gameOver(): void {
+    useModal().open(ModalGameOver, {
+      isCheckmate: isCheckmate.value,
+      isStalemate: isStalemate.value,
+      turn: turn.value
+    })
+  }
+
   function highlightMoves(square: Square): void {
     highlightedSquares.value.forEach((squareId) => { document.getElementById(squareId)?.classList.remove('highlighted') });
     highlightedSquares.value = [];
@@ -62,22 +76,6 @@ export const useChess = () => {
     });
   }
 
-  const toast = useToast()
-  const modal = useModal()
-  const count = ref(0)
-  
-  function openModal() {
-    count.value += 1
-    modal.open(GameOverModal, {
-      count: count.value,
-      onSuccess() {
-        toast.add({
-          title: 'Success !',
-          id: 'modal-success'
-        })
-      }
-    })
-  }
 
   return {
     chess,
@@ -93,6 +91,6 @@ export const useChess = () => {
     getSquare,
     chessGet,
     flipBoard,
-    openModal
+    gameOver
   };
 };

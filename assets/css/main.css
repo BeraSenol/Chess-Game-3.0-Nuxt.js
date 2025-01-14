@@ -41,6 +41,10 @@
     @apply bg-neutral-300 dark:bg-gray-800;
   }
 
+  .u-bg-300 {
+    @apply bg-neutral-400 dark:bg-gray-700;
+  }
+
   .u-divide-color {
     @apply divide-primary-600 dark:divide-primary-800;
   }

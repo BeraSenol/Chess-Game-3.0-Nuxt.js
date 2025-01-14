@@ -37,8 +37,8 @@
           </div>
         </div>
       </div>
-      <Information class="mt-4 xl:mt-0" :san="san" :lan="lan" :fen="fen" :ascii="ascii"
-        :captures-white="capturesWhite" :captures-black="capturesBlack" />
+      <Information class="mt-4 xl:mt-0" :san="san" :lan="lan" :fen="fen" :ascii="ascii" :captures-white="capturesWhite"
+        :captures-black="capturesBlack" />
     </div>
     <UModals />
     <UNotifications />

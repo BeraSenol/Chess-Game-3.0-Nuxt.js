@@ -1,5 +1,5 @@
 <template>
-  <div class="text-center font-semibold text-2xl font-mono" style="height: 34rem;">
+  <div class="text-center text-2xl font-mono" style="height: 34rem;">
     <p v-for="line in splitIntoLines(ascii)">
       {{ line }}
     </p>
