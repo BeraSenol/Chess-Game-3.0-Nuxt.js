@@ -32,8 +32,8 @@ export const useChess = () => {
     }
   };
 
-  function getSquare(i: number, j: number, white: boolean, object: boolean): any {
-    if (object) {
+  function getSquare(i: number, j: number, white: boolean, returnObject: boolean): any {
+    if (returnObject) {
       return white ? <Square>`${String.fromCharCode(j + 97)}${8 - i}` : <Square>`${String.fromCharCode(104 - j)}${i + 1}`;
     }
     return white ? `${String.fromCharCode(j + 97)}${8 - i}` : <Square>`${String.fromCharCode(104 - j)}${i + 1}`;

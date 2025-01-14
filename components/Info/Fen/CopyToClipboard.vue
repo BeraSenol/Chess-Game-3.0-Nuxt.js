@@ -1,8 +1,14 @@
 <template>
-  <UTooltip class="flex flex-col overflow-auto">
-    <UButton icon="i-heroicons-clipboard-document-check" :variant="useColorMode().value === 'light' ? 'solid' : 'soft'"
-      size="xl" class="flex text-lg tracking-wide justify-center items-center py-6 h-8" :trailing="true"
-      @click="useClipboard().copyToClipboard(<string>fen); useToast().add({ title: 'Succes!', description: 'FEN succesfully copied to clipboard', icon: 'material-symbols:bookmark-check-outline' })">
+  <UTooltip class="flex flex-col overflow-auto" text="Click me to copy FEN into Clipboard">
+    <UButton class="flex justify-center items-center text-sm md:text-lg tracking-tighter px-2"
+      icon="i-heroicons-clipboard-document-check" size="xl"
+      :variant="useColorMode().value === 'light' ? 'solid' : 'soft'" :trailing="true" @click="useClipboard().copyToClipboard(<string>fen);
+      useToast().add({
+        title: 'Succes!',
+        description: 'FEN succesfully copied to clipboard',
+        icon: 'material-symbols:bookmark-check-outline',
+        timeout: 2500
+      })">
       {{ fen }}
     </UButton>
   </UTooltip>

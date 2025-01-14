@@ -1,19 +1,15 @@
 <template>
-  <div class="flex justify-evenly items-center w-screen border-b-4 u-border-color h-16 mb-4">
+  <div class="flex flex-col md:flex-row justify-evenly items-center w-screen border-b-4 u-border-color mb-4">
     <div class="basis-1/5 flex justify-center">
-      <NavColorPicker />
+      <NavColorPicker class="p-2"/>
+    </div>
+    <div class="flex basis-3/5 justify-evenly">
+      <NavTimeBadge class="p-2 mx-2"/>
+      <NavTurnBadge class="p-2 mx-2":turn="turn" :in-check="inCheck" />
+      <NavTimeBadge class="p-2 mx-2"/>
     </div>
     <div class="basis-1/5 flex justify-center">
-      <NavTimeBadge />
-    </div>
-    <div class="basis-1/5 flex justify-center">
-      <NavTurnBadge :turn="turn" :in-check="inCheck" />
-    </div>
-    <div class="basis-1/5 flex justify-center">
-      <NavTimeBadge />
-    </div>
-    <div class="basis-1/5 flex justify-center">
-      <NavColorMode />
+      <NavColorMode class="p-2"/>
     </div>
   </div>
 </template>

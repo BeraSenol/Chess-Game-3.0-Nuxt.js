@@ -1,7 +1,7 @@
 <template>
     <div class="w-full relative rounded-lg divide-y-2 u-divide-color u-border u-border-color"
         :ui="{ divide: 'divide-y-2' }">
-        <UContainer class="h-10 my-4">
+        <UContainer class="my-3">
             <InfoCaptures :captures-white="capturesWhite" :captures-black="capturesBlack" />
         </UContainer>
         <UTabs :items="items" class="w-full p-4">
