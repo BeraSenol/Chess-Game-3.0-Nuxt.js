@@ -19,6 +19,9 @@
                     <div v-else-if="item.key === 'fen'">
                         <InfoFen :fen="fen" />
                     </div>
+                    <div v-else-if="item.key === 'ascii'">
+                        <InfoAscii :ascii="ascii"/>
+                    </div>
                 </UCard>
             </template>
         </UTabs>
@@ -46,6 +49,10 @@ const items = [{
     key: 'fen',
     label: 'FEN',
     description: 'Forsyth Edwards Notation'
+}, {
+    key: 'ascii',
+    label: 'ASCII',
+    description: 'ASCII Diagram'
 }]
 </script>
 
@@ -55,6 +62,7 @@ export default {
         san: { type: Array, required: false },
         lan: { type: Array, required: false },
         fen: { type: String, required: false },
+        ascii: { type: String, required: true },
         capturesWhite: { type: Array, required: false },
         capturesBlack: { type: Array, required: false },
     }

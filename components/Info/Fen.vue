@@ -1,5 +1,5 @@
 <template>
-  <div style="height: 34rem;">
+  <div class="overflow-auto" style="height: 34rem;">
     <InfoFenCopyToClipboard :fen="fen" />
     <InfoFenDeconstructed :fen="fen" />
   </div>

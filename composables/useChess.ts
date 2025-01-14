@@ -1,16 +1,19 @@
 import { Chess, type Piece, type Square } from 'chess.js';
+import GameOverModal from '~/components/GameOverModal.vue';
 
 export const useChess = () => {
   const chess = reactive(new Chess());
   const chessboard = computed(() => chess.board());
-  const selectedSquare = ref<Square | null>(null);
-  const highlightedSquares = ref<string[]>([]);
   const san = ref<string[]>([]);
   const lan = ref<string[]>([]);
-  const fen = computed(() => chess.fen())
+  const fen = computed(() => chess.fen());
+  const ascii = computed(() => chess.ascii());
   const capturesWhite = ref<string[]>([]);
   const capturesBlack = ref<string[]>([]);
   const isBoardFlipped = useState<boolean>('isBoardFlipped', () => true);
+
+  const selectedSquare = ref<Square | null>(null);
+  const highlightedSquares = ref<string[]>([]);
 
   function onSquareClick(square: Square): void {
     highlightMoves(square);
@@ -57,7 +60,24 @@ export const useChess = () => {
       element?.classList.add('highlighted');
       highlightedSquares.value.push(indicatorId);
     });
-  };
+  }
+
+  const toast = useToast()
+  const modal = useModal()
+  const count = ref(0)
+  
+  function openModal() {
+    count.value += 1
+    modal.open(GameOverModal, {
+      count: count.value,
+      onSuccess() {
+        toast.add({
+          title: 'Success !',
+          id: 'modal-success'
+        })
+      }
+    })
+  }
 
   return {
     chess,
@@ -65,12 +85,14 @@ export const useChess = () => {
     san,
     lan,
     fen,
+    ascii,
     capturesWhite,
     capturesBlack,
     isBoardFlipped,
     onSquareClick,
     getSquare,
     chessGet,
-    flipBoard
+    flipBoard,
+    openModal
   };
 };

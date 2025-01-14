@@ -1,12 +1,12 @@
 <template>
-  <UTooltip class="flex flex-col overflow-auto" text="Click me to copy FEN into Clipboard">
-    <UButton class="flex justify-center items-center text-sm md:text-lg tracking-tighter px-2"
+  <UTooltip class="flex flex-col" text="Click me to copy FEN into Clipboard">
+    <UButton class="flex justify-center items-center text-sm xl:text-lg tracking-tighter xl:tracking-wide px-2"
       icon="i-heroicons-clipboard-document-check" size="xl"
       :variant="useColorMode().value === 'light' ? 'solid' : 'soft'" :trailing="true" @click="useClipboard().copyToClipboard(<string>fen);
       useToast().add({
         title: 'Succes!',
         description: 'FEN succesfully copied to clipboard',
-        icon: 'material-symbols:bookmark-check-outline',
+        icon: 'material-symbols-bookmark-check-outline',
         timeout: 2500
       })">
       {{ fen }}
