@@ -48,14 +48,10 @@ function getCapturedTypeCount(captures: any, type: string): number {
     default:
       return 0;
   }
-}
-</script>
-
-<script lang="ts">
-export default {
-  props: {
-    capturesWhite: { type: Object, required: false },
-    capturesBlack: { type: Object, required: false },
-  }
 };
+
+defineProps({
+  capturesWhite: { type: Object, required: false },
+  capturesBlack: { type: Object, required: false }
+})
 </script>

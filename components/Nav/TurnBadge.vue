@@ -7,11 +7,9 @@
     is in Check!</UBadge>
 </template>
 
-<script lang="ts">
-export default {
-  props: {
-    turn: { type: String, required: true, default: 'w' },
-    inCheck: { type: Boolean, required: true, default: false }
-  }
-};
+<script lang="ts" setup>
+defineProps({
+  turn: { type: String, required: true, default: 'w' },
+  inCheck: { type: Boolean, required: true, default: false }
+});
 </script>

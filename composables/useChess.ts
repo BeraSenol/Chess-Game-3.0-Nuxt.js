@@ -52,7 +52,7 @@ export const useChess = () => {
     return chess.get(sqaure);
   }
 
-  function flipBoard(): void {
+  function flipChessboard(): void {
     isBoardFlipped.value = !isBoardFlipped.value;
   }
 
@@ -90,7 +90,7 @@ export const useChess = () => {
     onSquareClick,
     getSquare,
     chessGet,
-    flipBoard,
+    flipChessboard,
     gameOver
   };
 };

@@ -14,13 +14,9 @@ function splitIntoLines(input: string): string[] {
     lines.push(input.slice(i, i + lineLength));
   }
   return lines;
-}
-</script>
+};
 
-<script lang="ts">
-export default {
-  props: {
-    ascii: { type: String, required: true }
-  }
-}
+defineProps({
+  ascii: { type: String, required: true }
+})
 </script>

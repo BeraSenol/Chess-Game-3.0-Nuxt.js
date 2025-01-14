@@ -7,10 +7,8 @@
   </div>
 </template>
 
-<script lang="ts">
-export default {
-  props: {
-    history: { type: Object, required: false }
-  }
-};
+<script lang="ts" setup>
+defineProps({
+  history: { type: Object, required: false }
+});
 </script>

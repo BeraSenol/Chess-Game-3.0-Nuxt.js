@@ -15,15 +15,15 @@
                     <InfoFen v-else-if="item.key === 'fen'" :fen="fen" />
                     <InfoAscii v-else-if="item.key === 'ascii'" :ascii="ascii" />
                     <template v-if="item.key === 'fen'" #footer>
-                        <InfoClipboardFen  :fen="fen" />
+                        <InfoClipboardFen :fen="fen" />
                     </template>
                 </UCard>
             </template>
         </UTabs>
-        <div class="absolute bottom-0 w-full p-4">
+        <div class="flex justify-around absolute bottom-0 w-full p-4">
             <UTooltip text="Flip Chessboard" class="flex justify-center">
                 <UButton size="xl" variant="soft" icon="i-material-symbols-sync" :trailing="true"
-                    @click="useChess().flipBoard()" />
+                    @click="useChess().flipChessboard()" />
             </UTooltip>
         </div>
     </div>
@@ -47,18 +47,15 @@ const tabs = [{
     key: 'ascii',
     label: 'ASCII',
     description: 'ASCII Diagram'
-}]
+}];
+
+defineProps({
+    san: { type: Array, required: false },
+    lan: { type: Array, required: false },
+    fen: { type: String, required: false },
+    ascii: { type: String, required: true },
+    capturesWhite: { type: Array, required: false },
+    capturesBlack: { type: Array, required: false },
+});
 </script>
 
-<script lang="ts">
-export default {
-    props: {
-        san: { type: Array, required: false },
-        lan: { type: Array, required: false },
-        fen: { type: String, required: false },
-        ascii: { type: String, required: true },
-        capturesWhite: { type: Array, required: false },
-        capturesBlack: { type: Array, required: false },
-    }
-};
-</script>

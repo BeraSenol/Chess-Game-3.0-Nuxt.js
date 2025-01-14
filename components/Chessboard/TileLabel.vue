@@ -19,12 +19,10 @@
   </div>
 </template>
 
-<script lang="ts">
-export default {
-  props: {
-    square: { type: String, required: true },
-    color: { type: Boolean, required: true },
-    playerWhite: { type: Boolean, required: true }
-  }
-};
+<script lang="ts" setup>
+defineProps({
+  square: { type: String, required: true },
+  color: { type: Boolean, required: true },
+  playerWhite: { type: Boolean, required: true }
+})
 </script>

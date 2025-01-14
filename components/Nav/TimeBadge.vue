@@ -11,5 +11,3 @@ function startTimer(): void {
   }, 1000)
 }
 </script>
-
-<style></style>

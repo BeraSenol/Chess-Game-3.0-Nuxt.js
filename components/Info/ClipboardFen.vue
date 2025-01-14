@@ -1,5 +1,6 @@
 <template>
-  <UTooltip class="flex flex-col" text="Click me to copy FEN into Clipboard" :popper="{ placement: 'top-start', strategy: 'absolute' }">
+  <UTooltip class="flex flex-col" text="Click me to copy FEN into Clipboard"
+    :popper="{ placement: 'top-start', strategy: 'absolute' }">
     <UButton class="flex justify-center items-center text-sm xl:text-lg tracking-tighter xl:tracking-wide px-2"
       icon="i-heroicons-clipboard-document-check" size="xl"
       :variant="useColorMode().value === 'light' ? 'solid' : 'soft'" :trailing="true" @click="useClipboard().copyToClipboard(<string>fen);
@@ -14,10 +15,9 @@
   </UTooltip>
 </template>
 
-<script lang="ts">
-export default {
-  props: {
-    fen: { type: String, required: false }
-  }
-};
+
+<script lang="ts" setup>
+defineProps({
+  fen: { type: String, required: false }
+})
 </script>

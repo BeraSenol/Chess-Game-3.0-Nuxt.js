@@ -32,13 +32,9 @@ const getOrdinalNumber = (num: number): string => {
     case 3: return numString + "rd";
     default: return numString + "th";
   }
-}
-</script>
-
-<script lang="ts">
-export default {
-  props: {
-    fen: { type: String, required: false }
-  }
 };
+
+defineProps({
+  fen: { type: String, required: false }
+})
 </script>
