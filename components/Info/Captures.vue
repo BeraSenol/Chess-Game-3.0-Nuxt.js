@@ -1,28 +1,33 @@
 <template>
   <div class="flex divide-x-2 h-10 u-divide-color">
     <div class="flex basis-1/2">
-      <NuxtImg v-for="capture in getCapturedTypeCount(capturesWhite, 'p')" src="/pieces/pw.svg" alt="pw.svg"
-        class="w-6 lg:w-10 h-6 lg:h-10" />
-      <NuxtImg v-for="capture in getCapturedTypeCount(capturesWhite, 'n')" src="/pieces/nw.svg" alt="nw.svg"
-        class="w-6 lg:w-10 h-6 lg:h-10" />
-      <NuxtImg v-for="capture in getCapturedTypeCount(capturesWhite, 'b')" src="/pieces/bw.svg" alt="bw.svg"
-        class="w-6 lg:w-10 h-6 lg:h-10" />
-      <NuxtImg v-for="capture in getCapturedTypeCount(capturesWhite, 'r')" src="/pieces/rw.svg" alt="rw.svg"
-        class="w-6 lg:w-10 h-6 lg:h-10" />
-      <NuxtImg v-for="capture in getCapturedTypeCount(capturesWhite, 'q')" src="/pieces/qw.svg" alt="qw.svg"
-        class="w-6 lg:w-10 h-6 lg:h-10" />
+      <NuxtImg v-for="capture, i in getCapturedTypeCount(capturesWhite, 'p')" src="/pieces/pw.svg" alt="pw.svg"
+        :style="`left: ${i * 1.2 + 2}%;`" class="w-6 lg:w-10 h-6 lg:h-10 absolute" />
+      <NuxtImg v-for="capture, i in getCapturedTypeCount(capturesWhite, 'n')" src="/pieces/nw.svg" alt="nw.svg"
+        :style="`left: ${i * 1.2 + 16}%;`" class="w-6 lg:w-10 h-6 lg:h-10 absolute" />
+      <NuxtImg v-for="capture, i in getCapturedTypeCount(capturesWhite, 'b')" src="/pieces/bw.svg" alt="bw.svg"
+        :style="`left: ${i * 1.2 + 24}%;`" class="w-6 lg:w-10 h-6 lg:h-10 absolute" />
+      <NuxtImg v-for="capture, i in getCapturedTypeCount(capturesWhite, 'r')" src="/pieces/rw.svg" alt="rw.svg"
+        :style="`left: ${i * 1.2 + 32}%;`" class="w-6 lg:w-10 h-6 lg:h-10 absolute" />
+      <NuxtImg v-for="capture, i in getCapturedTypeCount(capturesWhite, 'q')" src="/pieces/qw.svg" alt="qw.svg"
+        :style="`left: ${i * 1.2 + 40}%;`" class="w-6 lg:w-10 h-6 lg:h-10 absolute" />
     </div>
     <div class="flex basis-1/2 justify-end">
-      <NuxtImg v-for="capture in getCapturedTypeCount(capturesBlack, 'q')" src="/pieces/qb.svg" alt="qb.svg"
-        style="filter: drop-shadow(0px 0px 1px rgb(255 255 255))" class="w-6 lg:w-10 h-6 lg:h-10" />
-      <NuxtImg v-for="capture in getCapturedTypeCount(capturesBlack, 'r')" src="/pieces/rb.svg" alt="rb.svg"
-        style="filter: drop-shadow(0px 0px 1px rgb(255 255 255))" class="w-6 lg:w-10 h-6 lg:h-10" />
-      <NuxtImg v-for="capture in getCapturedTypeCount(capturesBlack, 'b')" src="/pieces/bb.svg" alt="bb.svg"
-        style="filter: drop-shadow(0px 0px 1px rgb(255 255 255))" class="w-6 lg:w-10 h-6 lg:h-10" />
-      <NuxtImg v-for="capture in getCapturedTypeCount(capturesBlack, 'n')" src="/pieces/nb.svg" alt="nb.svg"
-        style="filter: drop-shadow(0px 0px 1px rgb(255 255 255))" class="w-6 lg:w-10 h-6 lg:h-10" />
-      <NuxtImg v-for="capture in getCapturedTypeCount(capturesBlack, 'p')" src="/pieces/pb.svg" alt="pb.svg"
-        style="filter: drop-shadow(0px 0px 1px rgb(255 255 255))" class="w-6 lg:w-10 h-6 lg:h-10" />
+      <NuxtImg v-for="capture, i in getCapturedTypeCount(capturesBlack, 'q')" src="/pieces/qb.svg" alt="qb.svg"
+        style="filter: drop-shadow(0px 0px 1px rgb(255 255 255))" class="w-6 lg:w-10 h-6 lg:h-10 absolute"
+        :style="`right: ${i * 1.2 + 40}%;`" />
+      <NuxtImg v-for="capture, i in getCapturedTypeCount(capturesBlack, 'r')" src="/pieces/rb.svg" alt="rb.svg"
+        style="filter: drop-shadow(0px 0px 1px rgb(255 255 255))" class="w-6 lg:w-10 h-6 lg:h-10 absolute"
+        :style="`right: ${i * 1.2 + 32}%;`" />
+      <NuxtImg v-for="capture, i in getCapturedTypeCount(capturesBlack, 'b')" src="/pieces/bb.svg" alt="bb.svg"
+        style="filter: drop-shadow(0px 0px 1px rgb(255 255 255))" class="w-6 lg:w-10 h-6 lg:h-10 absolute"
+        :style="`right: ${i * 1.2 + 24}%;`" />
+      <NuxtImg v-for="capture, i in getCapturedTypeCount(capturesBlack, 'n')" src="/pieces/nb.svg" alt="nb.svg"
+        style="filter: drop-shadow(0px 0px 1px rgb(255 255 255))" class="w-6 lg:w-10 h-6 lg:h-10 absolute"
+        :style="`right: ${i * 1.2 + 16}%;`" />
+      <NuxtImg v-for="capture, i in getCapturedTypeCount(capturesBlack, 'p')" src="/pieces/pb.svg" alt="pb.svg"
+        style="filter: drop-shadow(0px 0px 1px rgb(255 255 255))" class="w-6 lg:w-10 h-6 lg:h-10 absolute"
+        :style="`right: ${i * 1.2 + 2}%;`" />
     </div>
   </div>
 </template>

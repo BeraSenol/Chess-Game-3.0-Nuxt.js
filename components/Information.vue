@@ -4,24 +4,19 @@
         <UContainer class="my-3">
             <InfoCaptures :captures-white="capturesWhite" :captures-black="capturesBlack" />
         </UContainer>
-        <UTabs :items="items" class="w-full p-4">
+        <UTabs :items="tabs" class="w-full p-4">
             <template #item="{ item }">
                 <UCard>
                     <template #header>
                         <p class="text-lg text-center">{{ item.description }}</p>
                     </template>
-                    <div v-if="item.key === 'san'">
-                        <InfoMoveHistory :history="san" />
-                    </div>
-                    <div v-else-if="item.key === 'lan'">
-                        <InfoMoveHistory :history="lan" />
-                    </div>
-                    <div v-else-if="item.key === 'fen'">
-                        <InfoFen :fen="fen" />
-                    </div>
-                    <div v-else-if="item.key === 'ascii'">
-                        <InfoAscii :ascii="ascii"/>
-                    </div>
+                    <InfoMoveHistory v-if="item.key === 'san'" :history="san" />
+                    <InfoMoveHistory v-else-if="item.key === 'lan'" :history="lan" />
+                    <InfoFen v-else-if="item.key === 'fen'" :fen="fen" />
+                    <InfoAscii v-else-if="item.key === 'ascii'" :ascii="ascii" />
+                    <template v-if="item.key === 'fen'" #footer>
+                        <InfoClipboardFen  :fen="fen" />
+                    </template>
                 </UCard>
             </template>
         </UTabs>
@@ -36,8 +31,7 @@
 
 
 <script lang="ts" setup>
-const toast = useToast();
-const items = [{
+const tabs = [{
     key: 'san',
     label: 'SAN',
     description: 'Standard Algebraic Notation',
