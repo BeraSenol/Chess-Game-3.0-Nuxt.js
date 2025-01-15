@@ -1,6 +1,6 @@
 <template>
   <UTooltip :text="`Change into ${colorMode.value === 'light' ? 'Dark' : 'Light'} Mode`">
-    <UButton class="text-primary-50" :variant="useColorMode().value === 'light' ? 'solid' : 'soft'"
+    <UButton class="text-primary-50 py-2" :variant="useColorMode().value === 'light' ? 'solid' : 'soft'"
       :icon="isDark ? 'i-material-symbols-sunny-outline' : 'i-material-symbols-dark-mode-outline'" size="xl"
       @click="isDark = !isDark" />
   </UTooltip>

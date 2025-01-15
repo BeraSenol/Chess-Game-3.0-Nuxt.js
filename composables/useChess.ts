@@ -19,12 +19,15 @@ export const useChess = () => {
   const highlightedSquares = ref<string[]>([]);
 
   function onSquareClick(square: Square): void {
+    console.log(chessGet(square));
+    console.log(chess.get(square));
     highlightMoves(square);
     if (chess.get(square) && chess.get(square).color === chess.turn()) {
       selectedSquare.value = square;
     } else {
       try {
         const move = chess.move({ from: <string>selectedSquare.value, to: square });
+        console.log(move);
         san.value.push(move.san);
         lan.value.push(move.lan);
         if (move.captured) {

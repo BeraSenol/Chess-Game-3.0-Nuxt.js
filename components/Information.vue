@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-col w-full rounded-lg divide-y-2 u-divide-color u-border u-border-color">
         <InfoCaptures :captures-white="capturesWhite" :captures-black="capturesBlack" />
-        <div class="py-4" style="height: 46rem;">
+        <div class="p-4" style="height: 46rem;">
             <UTabs :items="tabs">
                 <template #item="{ item }">
                     <UCard>

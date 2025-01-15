@@ -1,7 +1,7 @@
 <template>
   <UPopover :popper="{ placement: 'bottom-start' }">
     <UTooltip text="Choose Your Primary Color">
-      <UButton class="text-lg py-1.5 px-2.5" :variant="useColorMode().value === 'light' ? 'solid' : 'soft'" size="lg"
+      <UButton class="text-lg py-1.5 px-4" :variant="useColorMode().value === 'light' ? 'solid' : 'soft'" size="lg"
         trailing-icon="i-heroicons-chevron-down-20-solid">
         {{ capitalize(useAppConfig().ui.primary) }}
       </UButton>
