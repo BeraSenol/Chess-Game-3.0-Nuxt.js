@@ -65,13 +65,13 @@ export const useChess = () => {
   }
 
   function highlightMoves(square: Square): void {
-    highlightedSquares.value.forEach((squareId) => { document.getElementById(squareId)?.classList.remove('highlighted') });
+    highlightedSquares.value.forEach((squareId) => { document.getElementById(squareId)?.classList.remove('u-highlighted') });
     highlightedSquares.value = [];
     const moves = chess.moves({ square, verbose: true });
     moves.forEach((move) => {
       const indicatorId = `${move.to}-indicator`;
       const element = document.getElementById(indicatorId);
-      element?.classList.add('highlighted');
+      element?.classList.add('u-highlighted');
       highlightedSquares.value.push(indicatorId);
     });
   }

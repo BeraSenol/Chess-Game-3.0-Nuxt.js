@@ -1,9 +1,9 @@
 <template>
-  <div class="absolute flex justify-center items-center indicator u-tile-size"></div>
+  <div class="flex justify-center items-center absolute u-indicator u-tile-size"></div>
 </template>
 
 <style scoped>
-div .highlighted::after {
+div .u-highlighted::after {
   content: '';
   background-color: rgba(0, 0, 0, 0.30);
   border-radius: 50%;
