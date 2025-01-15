@@ -1,7 +1,8 @@
 <template>
-  <div class="text-center text-2xl font-mono" style="height: 34rem;">
+  <div class="flex justify-center items-center text-2xl font-mono" style="height: 30rem;"
+    :class="isBoardFlipped ? 'flex-col' : 'flex-col-reverse'">
     <p v-for="line in splitIntoLines(ascii)">
-      {{ line }}
+      {{ isBoardFlipped ? line : line.split('').reverse().join('') }}
     </p>
   </div>
 </template>
@@ -17,6 +18,7 @@ function splitIntoLines(input: string): string[] {
 };
 
 defineProps({
-  ascii: { type: String, required: true }
+  ascii: { type: String, required: true },
+  isBoardFlipped: { type: Boolean, default: false, required: true }
 })
 </script>

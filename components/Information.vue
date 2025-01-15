@@ -13,7 +13,7 @@
                     <InfoMoveHistory v-if="item.key === 'san'" :history="san" />
                     <InfoMoveHistory v-else-if="item.key === 'lan'" :history="lan" />
                     <InfoFen v-else-if="item.key === 'fen'" :fen="fen" />
-                    <InfoAscii v-else-if="item.key === 'ascii'" :ascii="ascii" />
+                    <InfoAscii v-else-if="item.key === 'ascii'" :ascii="ascii" :is-board-flipped="isBoardFlipped"/>
                     <template v-if="item.key === 'fen'" #footer>
                         <InfoClipboardFen :fen="fen" />
                     </template>
@@ -56,6 +56,7 @@ defineProps({
     ascii: { type: String, required: true },
     capturesWhite: { type: Array, required: false },
     capturesBlack: { type: Array, required: false },
+    isBoardFlipped: { type: Boolean, required: false },
 });
 </script>
 

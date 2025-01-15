@@ -38,7 +38,7 @@
         </div>
       </div>
       <Information class="mt-4 xl:mt-0" :san="san" :lan="lan" :fen="fen" :ascii="ascii" :captures-white="capturesWhite"
-        :captures-black="capturesBlack" />
+        :captures-black="capturesBlack", :is-board-flipped="isBoardFlipped" />
     </div>
     <UModals />
     <UNotifications />
