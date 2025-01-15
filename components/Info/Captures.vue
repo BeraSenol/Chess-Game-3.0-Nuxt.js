@@ -1,5 +1,5 @@
 <template>
-  <div class="flex h-12 my-2 divide-x-2 u-divide-color">
+  <div class="flex relative h-12 my-2 divide-x-2 u-divide-color">
     <div class="basis-1/2">
       <NuxtImg v-for="(capture, i) in Array.from({ length: captureCount(capturesWhite, 'p') })"
         :key="`pw-captured-${i}`" class="absolute w-6 lg:w-12 h-6 lg:h-12" :style="`left: ${i * 1.2 + 2}%;`"
