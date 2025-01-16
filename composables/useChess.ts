@@ -2,8 +2,8 @@ import { Chess, type Piece, type Square } from 'chess.js';
 import ModalGameOver from '~/components/Modal/GameOver.vue';
 
 export const useChess = () => {
-  const chess = reactive(new Chess('4k3/4P3/8/4K3/8/8/8/8 w - - 0 78'));
-  const chessboard = computed(() => chess.board());
+  // EXPORT VARIABLES
+  const chess = reactive(new Chess());
   const san = ref<string[]>([]);
   const lan = ref<string[]>([]);
   const fen = computed(() => chess.fen());
@@ -11,21 +11,22 @@ export const useChess = () => {
   const capturesWhite = ref<string[]>([]);
   const capturesBlack = ref<string[]>([]);
   const isBoardFlipped = useState<boolean>('isBoardFlipped', () => true);
+
+  // GAME OVER MODAL
   const isCheckmate = computed(() => chess.isCheckmate());
   const isStalemate = computed(() => chess.isStalemate());
-  const isDrawByFiftyMoves = computed(() => parseInt(chess.fen().split(' ')[4]) >= 100 ? true : false);
   const isDrawByInsufficientMaterial = computed(() => chess.isInsufficientMaterial());
+  const isDrawByFiftyMoves = computed(() => chess.isDrawByFiftyMoves());
   const isDrawByThreefoldRepetition = computed(() => chess.isThreefoldRepetition());
   const turn = computed(() => chess.turn());
 
+  // LOCAL VARIABLES
   const selectedSquare = ref<Square | null>(null);
   const highlightedSquares = ref<string[]>([]);
 
   function onSquareClick(square: Square): void {
-    console.log(chessGet(square));
-    console.log(chess.get(square));
     highlightMoves(square);
-    if (chess.get(square) && chess.get(square).color === chess.turn()) {
+    if (chess.get(square) && chess.get(square)?.color === chess.turn()) {
       selectedSquare.value = square;
     } else {
       try {
@@ -54,10 +55,6 @@ export const useChess = () => {
     return white ? `${String.fromCharCode(j + 97)}${8 - i}` : <Square>`${String.fromCharCode(104 - j)}${i + 1}`;
   };
 
-  function chessGet(sqaure: Square): Piece {
-    return chess.get(sqaure);
-  }
-
   function flipChessboard(): void {
     isBoardFlipped.value = !isBoardFlipped.value;
   }
@@ -66,8 +63,8 @@ export const useChess = () => {
     useModal().open(ModalGameOver, {
       isCheckmate: isCheckmate.value,
       isStalemate: isStalemate.value,
-      isDrawByFiftyMoves: isDrawByFiftyMoves.value,
       isDrawByInsufficientMaterial: isDrawByInsufficientMaterial.value,
+      isDrawByFiftyMoves: isDrawByFiftyMoves.value,
       isDrawByThreefoldRepetition: isDrawByThreefoldRepetition.value,
       turn: turn.value
     });
@@ -85,21 +82,7 @@ export const useChess = () => {
     });
   }
 
-
   return {
-    chess,
-    chessboard,
-    san,
-    lan,
-    fen,
-    ascii,
-    capturesWhite,
-    capturesBlack,
-    isBoardFlipped,
-    onSquareClick,
-    getSquare,
-    chessGet,
-    flipChessboard,
-    gameOver
-  };
+    chess, san, lan, fen, ascii, capturesWhite, capturesBlack, isBoardFlipped, onSquareClick, getSquare, flipChessboard, gameOver
+  }
 };

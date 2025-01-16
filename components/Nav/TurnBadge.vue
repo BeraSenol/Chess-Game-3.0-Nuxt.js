@@ -1,9 +1,9 @@
 <template>
   <div>
-    <UBadge v-if="!inCheck" class="text-lg px-4" :variant="useButtonVariant()" size="lg" color="primary">
+    <UBadge v-if="!inCheck" class="text-lg px-4" :variant="useVariant()" size="lg" color="primary">
       {{ turn === 'w' ? 'White' : 'Black' }} to Play
     </UBadge>
-    <UBadge v-if="inCheck" class="text-lg px-4" :variant="useButtonVariant()" size="lg" color="red">
+    <UBadge v-if="inCheck" class="text-lg px-4" :variant="useVariant()" size="lg" color="red">
       {{ turn === 'w' ? 'White' : 'Black' }} is in Check!
     </UBadge>
   </div>

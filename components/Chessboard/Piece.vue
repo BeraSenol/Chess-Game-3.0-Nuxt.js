@@ -4,7 +4,7 @@
 
 <script lang="ts" setup>
 defineProps({
-  type: { type: String, required: true },
-  color: { type: String, required: true }
+  type: { type: String || undefined, required: false },
+  color: { type: String || undefined, required: false }
 })
 </script>

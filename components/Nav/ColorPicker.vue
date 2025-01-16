@@ -1,7 +1,7 @@
 <template>
   <UPopover :popper="{ placement: 'bottom-start' }">
     <UTooltip text="Choose Your Primary Color">
-      <UButton class="text-lg py-1.5 px-4" :variant="useButtonVariant()" size="lg"
+      <UButton class="text-lg py-1.5 px-4" :variant="useVariant()" size="lg"
         trailing-icon="i-heroicons-chevron-down-20-solid">
         {{ capitalize(useAppConfig().ui.primary) }}
       </UButton>
@@ -22,7 +22,6 @@
 </template>
 
 <script lang="ts" setup>
-import { useButtonVariant } from '~/composables/useButtonVariant';
 function capitalize(text: string): string {
   return String(text).charAt(0).toUpperCase() + String(text).slice(1);
 }

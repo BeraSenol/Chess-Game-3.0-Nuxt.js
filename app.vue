@@ -5,15 +5,15 @@
       <!-- BOARD FOR WHITE -->
       <div v-if="isBoardFlipped" class="flex justify-center select-none">
         <div class="flex flex-col flex-none">
-          <div v-for="(rank, i) in chessboard" class="flex rounded" :key="`${rank}-${i}`">
+          <div v-for="(rank, i) in chess.board()" class="flex rounded" :key="`${rank}-${i}`">
             <div v-for="(file, j) of rank" class="relative u-tile-size" :key="getSquare(i, j, true, false)"
               :class="chess.squareColor(getSquare(i, j, true, true)) === 'light' ? 'u-tile-light' : 'u-tile-dark'"
               :id="getSquare(i, j, true, false)" @click="onSquareClick(getSquare(i, j, true, true))">
               <ChessboardTileLabel :key="`${getSquare(i, j, true, false)}-label`" :square="getSquare(i, j, true, false)"
                 :color="chess.squareColor(getSquare(i, j, true, true)) === 'light'" :player-white="true" />
               <ChessboardPiece v-if="file" :key="`${getSquare(i, j, true, false)}}-piece`"
-                :type="chessGet(getSquare(i, j, true, true)).type"
-                :color="chessGet(getSquare(i, j, true, true)).color" />
+                :type="chess.get(getSquare(i, j, true, true))?.type"
+                :color="chess.get(getSquare(i, j, true, true))?.color" />
               <ChessboardIndicator :key="`${getSquare(i, j, true, true)}-indicator`"
                 :id="`${getSquare(i, j, true, true)}-indicator`" />
             </div>
@@ -23,7 +23,7 @@
       <!-- BOARD FOR BLACK -->
       <div v-if="!isBoardFlipped" class="flex justify-center select-none">
         <div class="flex flex-col flex-none">
-          <div v-for="(rank, i) in chessboard.toReversed()" class="flex" :key="`${rank}-${i}`">
+          <div v-for="(rank, i) in chess.board().toReversed()" class="flex" :key="`${rank}-${i}`">
             <div v-for="(file, j) of rank.toReversed()" class="relative u-tile-size" :key="getSquare(i, j, true, false)"
               :class="chess.squareColor(getSquare(i, j, false, true)) === 'light' ? 'u-tile-light' : 'u-tile-dark'"
               :id="getSquare(i, j, false, false)" @click="onSquareClick(getSquare(i, j, false, true))">
@@ -31,8 +31,8 @@
                 :square="getSquare(i, j, false, false)"
                 :color="chess.squareColor(getSquare(i, j, false, true)) === 'light'" :player-white="false" />
               <ChessboardPiece v-if="file" :key="`${getSquare(i, j, false, false)}}-piece`"
-                :type="chessGet(getSquare(i, j, false, true)).type"
-                :color="chessGet(getSquare(i, j, false, true)).color" />
+                :type="chess.get(getSquare(i, j, false, true))?.type"
+                :color="chess.get(getSquare(i, j, false, true))?.color" />
               <ChessboardIndicator :key="`${getSquare(i, j, true, true)}-indicator`"
                 :id="`${getSquare(i, j, false, true)}-indicator`" />
             </div>
@@ -42,13 +42,13 @@
       <Information class="mt-4 xl:mt-0" :san="san" :lan="lan" :fen="fen" :ascii="ascii" :captures-white="capturesWhite"
         :captures-black="capturesBlack" , :is-board-flipped="isBoardFlipped" />
     </section>
-    <UModals />
+    <UModals :chess="chess" />
     <UNotifications />
   </main>
 </template>
 
 <script lang="ts" setup>
-const { chess, chessboard, san, lan, fen, ascii, capturesWhite, capturesBlack, isBoardFlipped, chessGet, onSquareClick, getSquare } = useChess();
+const { chess, san, lan, fen, ascii, capturesWhite, capturesBlack, isBoardFlipped, onSquareClick, getSquare } = useChess();
 useHead({ htmlAttrs: { lang: 'en' } });
 useSeoMeta({ title: 'Pretty Chess' });
 </script>
