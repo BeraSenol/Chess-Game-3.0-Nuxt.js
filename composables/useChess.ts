@@ -2,7 +2,7 @@ import { Chess, type Piece, type Square } from 'chess.js';
 import ModalGameOver from '~/components/Modal/GameOver.vue';
 
 export const useChess = () => {
-  const chess = reactive(new Chess());
+  const chess = reactive(new Chess('4k3/4P3/8/4K3/8/8/8/8 w - - 0 78'));
   const chessboard = computed(() => chess.board());
   const san = ref<string[]>([]);
   const lan = ref<string[]>([]);
@@ -13,6 +13,9 @@ export const useChess = () => {
   const isBoardFlipped = useState<boolean>('isBoardFlipped', () => true);
   const isCheckmate = computed(() => chess.isCheckmate());
   const isStalemate = computed(() => chess.isStalemate());
+  const isDrawByFiftyMoves = computed(() => parseInt(chess.fen().split(' ')[4]) >= 100 ? true : false);
+  const isDrawByInsufficientMaterial = computed(() => chess.isInsufficientMaterial());
+  const isDrawByThreefoldRepetition = computed(() => chess.isThreefoldRepetition());
   const turn = computed(() => chess.turn());
 
   const selectedSquare = ref<Square | null>(null);
@@ -63,8 +66,11 @@ export const useChess = () => {
     useModal().open(ModalGameOver, {
       isCheckmate: isCheckmate.value,
       isStalemate: isStalemate.value,
+      isDrawByFiftyMoves: isDrawByFiftyMoves.value,
+      isDrawByInsufficientMaterial: isDrawByInsufficientMaterial.value,
+      isDrawByThreefoldRepetition: isDrawByThreefoldRepetition.value,
       turn: turn.value
-    })
+    });
   }
 
   function highlightMoves(square: Square): void {

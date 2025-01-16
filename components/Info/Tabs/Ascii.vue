@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-center items-center text-2xl font-mono"
+  <div class="flex justify-center items-center text-2xl font-mono min-h-96"
     :class="isBoardFlipped ? 'flex-col' : 'flex-col-reverse'">
     <p v-for="line in splitIntoLines(ascii)" :key="line">
       {{ isBoardFlipped ? line : line.split('').reverse().join('') }}

@@ -1,5 +1,5 @@
 <template>
-  <UBadge class="text-lg px-4" :variant="useColorMode().value === 'light' ? 'solid' : 'soft'" :ui="{size: {lg: 'p-0'}}" size="lg"
+  <UBadge class="text-lg px-4" :variant="useButtonVariant()" :ui="{size: {lg: 'p-0'}}" size="lg"
     @click="startTimer()">{{ Math.floor(seconds / 60) }} : {{ (seconds %
       60).toString().padStart(2, '0') }}
   </UBadge>

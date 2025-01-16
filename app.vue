@@ -1,5 +1,5 @@
 <template>
-  <main class="u-bg-100 xl:overflow-y-hidden xl:overscroll-none pb-0 xl:pb-14">
+  <main class="u-bg-100 xl:overflow-y-hidden xl:overscroll-none pb-0 xl:pb-14 duration-300">
     <Navigation :turn="chess.turn()" :in-check="chess.isCheck()" />
     <section class="flex flex-col xl:flex-row justify-around xl:mx-4 xl:space-x-4">
       <!-- BOARD FOR WHITE -->

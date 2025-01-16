@@ -2,7 +2,7 @@
   <UTooltip class="flex flex-col" :popper="{ placement: 'top-start', strategy: 'absolute' }"
     text="Click me to copy FEN into Clipboard">
     <UButton class="flex justify-center items-center text-sm xl:text-lg tracking-tighter xl:tracking-wide px-2"
-      :variant="useColorMode().value === 'light' ? 'solid' : 'soft'" :trailing="true"
+      :variant="useButtonVariant()" :trailing="true"
       icon="i-heroicons-clipboard-document-check" size="xl" @click="useClipboard().copyToClipboard(<string>fen);
       useToast().add({
         title: 'Succes!',
@@ -17,6 +17,7 @@
 
 
 <script lang="ts" setup>
+import { useButtonVariant } from '~/composables/useButtonVariant';
 defineProps({
   fen: { type: String, required: true }
 })
