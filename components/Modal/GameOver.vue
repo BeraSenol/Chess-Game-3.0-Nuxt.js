@@ -1,5 +1,5 @@
 <template>
-  <UModal v-model="isOpen">
+  <UModal>
     <UCard class="text-2xl text-center font-semibold">
       <template #header>
         <p>Game Over</p>
@@ -23,8 +23,7 @@
         </p>
       </div>
       <template #footer>
-        <UButton :variant="useVariant()" label="New Game" size='lg'
-          @click="chess.reset(); useModal().close()" />
+        <UButton :variant="useVariant()" label="New Game" size='lg' @click="useModal().close(); chess?.reset()" />
       </template>
     </UCard>
   </UModal>
@@ -33,8 +32,9 @@
 <script lang="ts" setup>
 import { Chess } from 'chess.js';
 
+
 defineProps({
-  chess: { type: Chess, required: true },
+  chess: { type: Chess, required: false },
   isCheckmate: { type: Boolean, default: false, required: false },
   isStalemate: { type: Boolean, default: false, required: false },
   isDrawByFiftyMoves: { type: Boolean, default: false, required: false },
