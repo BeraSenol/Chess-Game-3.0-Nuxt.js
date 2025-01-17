@@ -1,9 +1,9 @@
-import { Chess, type Piece, type Square } from 'chess.js';
-import ModalGameOver from '~/components/Modal/GameOver.vue';
+import { ModalPromotion, ModalGameOver } from '#components';
+import { Chess, Move, type Square } from 'chess.js';
 
 export const useChess = () => {
-  // EXPORT VARIABLES
-  const chess = reactive(new Chess());
+  // RETURNED VARIABLES
+  const chess = reactive(new Chess('3k4/P7/8/8/8/8/7p/3K4 w KQkq - 0 5'));
   const san = ref<string[]>([]);
   const lan = ref<string[]>([]);
   const fen = computed(() => chess.fen());
@@ -21,7 +21,7 @@ export const useChess = () => {
   const turn = computed(() => chess.turn());
 
   // LOCAL VARIABLES
-  const selectedSquare = ref<Square | null>(null);
+  const selectedSquare = ref<String | null>(null);
   const highlightedSquares = ref<string[]>([]);
 
   function onSquareClick(square: Square): void {
@@ -30,16 +30,22 @@ export const useChess = () => {
       selectedSquare.value = square;
     } else {
       try {
-        const move = chess.move({ from: <string>selectedSquare.value, to: square });
-        console.log(move);
+        chess.moves({ verbose: true }).forEach((move) => {
+          if (move.from === selectedSquare.value && move.to === square && move.promotion) {
+            useModal().open(ModalPromotion, {
+              square: square,
+              selectedSquare: selectedSquare.value,
+              san: san.value,
+              lan: lan.value,
+              turn: turn.value
+            });
+          }
+        })
+        const move: Move = chess.move({ from: <string>selectedSquare.value, to: square });
         san.value.push(move.san);
         lan.value.push(move.lan);
-        if (move.captured) {
-          move.color === 'b' ? capturesWhite.value.push(move.captured) : capturesBlack.value.push(move.captured);
-        }
-        if (chess.isGameOver()) {
-          gameOver();
-        }
+        if (move.isCapture() || move.isEnPassant()) { move.color === 'b' ? capturesWhite.value.push(<string>move.captured) : capturesBlack.value.push(<string>move.captured); }
+        if (chess.isGameOver()) { gameOver(); }
       } catch (e) {
         console.error(e);
       } finally {
@@ -49,11 +55,9 @@ export const useChess = () => {
   };
 
   function getSquare(i: number, j: number, white: boolean, returnObject: boolean): any {
-    if (returnObject) {
-      return white ? <Square>`${String.fromCharCode(j + 97)}${8 - i}` : <Square>`${String.fromCharCode(104 - j)}${i + 1}`;
-    }
+    if (returnObject) { return white ? <Square>`${String.fromCharCode(j + 97)}${8 - i}` : <Square>`${String.fromCharCode(104 - j)}${i + 1}`; }
     return white ? `${String.fromCharCode(j + 97)}${8 - i}` : <Square>`${String.fromCharCode(104 - j)}${i + 1}`;
-  };
+  }
 
   function flipChessboard(): void {
     isBoardFlipped.value = !isBoardFlipped.value;
@@ -68,6 +72,10 @@ export const useChess = () => {
       isDrawByThreefoldRepetition: isDrawByThreefoldRepetition.value,
       turn: turn.value
     });
+    san.value = [];
+    lan.value = [];
+    capturesWhite.value = [];
+    capturesBlack.value = [];
   }
 
   function highlightMoves(square: Square): void {

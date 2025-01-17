@@ -21,7 +21,7 @@
             </UTabs>
         </div>
         <UTooltip class="flex justify-center items-center h-20 pt-2" text="Flip Chessboard">
-            <UButton size="xl" :variant="useVariant()" icon="i-material-symbols-sync" :trailing="true"
+            <UButton size="xl" :variant="useVariant()" icon="i-material-symbols-sync"
                 @click="useChess().flipChessboard()" />
         </UTooltip>
     </div>

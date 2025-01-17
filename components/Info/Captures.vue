@@ -43,8 +43,8 @@ defineProps({
   capturesBlack: { type: Array, required: true }
 });
 
-// const capturesWhite = ['p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'b', 'b', 'n', 'n', 'r', 'r', 'q','q'];
-// const capturesBlack = ['p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'b', 'b', 'n', 'n', 'r', 'r', 'q','q'];
+// const capturesWhite = ['p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'b', 'b', 'n', 'n', 'r', 'r', 'q', 'q'];
+// const capturesBlack = ['p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'b', 'b', 'n', 'n', 'r', 'r', 'q', 'q'];
 
 function pieceOffset(i: number, type: string, white: boolean): string {
   let offset: number = 0;
@@ -67,6 +67,6 @@ function captureCount(captures: any[], type: string): number {
 
 <style scoped>
 .l-drop-shadow {
-  filter: drop-shadow(0px 0px 2px rgb(255 255 255));
+  filter: drop-shadow(0px 0px 1px rgb(255 255 255));
 }
 </style>

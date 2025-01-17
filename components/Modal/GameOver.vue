@@ -7,7 +7,7 @@
       <div class="flex flex-col items-center">
         <ChessboardPiece v-if="isCheckmate" type="k" :color="turn === 'w' ? 'b' : 'w'"
           :style="turn === 'w' ? 'filter: drop-shadow(0px 0px 2px rgb(255 255 255))' : ''" />
-        <NuxtImg v-if="!isCheckmate" class="w-32 h-32" src="/wbk.svg" alt="wbk.svg" />
+        <NuxtImg v-if="!isCheckmate" class="u-tile-size" src="/wbk.svg" alt="wbk.svg" />
         <p>{{ isCheckmate ? 'Victory' : 'Draw' }}</p>
         <div class="font-light text-base">
           <p>{{ isCheckmate ? 'by Checkmate' : '' }}</p>
@@ -23,7 +23,7 @@
         </p>
       </div>
       <template #footer>
-        <UButton :variant="useVariant()" label="New Game" size='lg' @click="useModal().close(); chess?.reset()" />
+        <UButton :variant="useVariant()" label="New Game" size='lg' @click="useModal().close(); chess?.reset();" />
       </template>
     </UCard>
   </UModal>
@@ -32,10 +32,9 @@
 <script lang="ts" setup>
 import { Chess } from 'chess.js';
 
-
 defineProps({
   chess: { type: Chess, required: false },
-  isCheckmate: { type: Boolean, default: false, required: false },
+  isCheckmate: { type: Boolean, default: false, required: true },
   isStalemate: { type: Boolean, default: false, required: false },
   isDrawByFiftyMoves: { type: Boolean, default: false, required: false },
   isDrawByInsufficientMaterial: { type: Boolean, default: false, required: false },
