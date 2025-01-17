@@ -34,7 +34,7 @@ export const useChess = () => {
           if (move.from === selectedSquare.value && move.to === square && move.promotion) {
             useModal().open(ModalPromotion, {
               square: square,
-              selectedSquare: selectedSquare.value,
+              selectedSquare: selectedSquare.value.toString(),
               san: san.value,
               lan: lan.value,
               turn: turn.value
