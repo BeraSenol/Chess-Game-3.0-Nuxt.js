@@ -3,7 +3,7 @@ import { Chess, Move, type Square } from 'chess.js';
 
 export const useChess = () => {
   // RETURNED VARIABLES
-  const chess = reactive(new Chess('3k4/P7/8/8/8/8/7p/3K4 w KQkq - 0 5'));
+  const chess = reactive(new Chess());
   const san = ref<string[]>([]);
   const lan = ref<string[]>([]);
   const fen = computed(() => chess.fen());

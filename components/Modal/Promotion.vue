@@ -7,7 +7,7 @@
       <div class="flex justify-around">
         <UButton v-for="piece in pieces" class="h-24 w-24" :variant="useVariant()" @click="chess?.move({ from: <string>selectedSquare, to: square, promotion: piece });
         san.push(`${square}=${piece.toUpperCase()}${chess?.inCheck() ? '+' : ''}`);
-        lan.push(`${selectedSquare}${square}${piece}`)
+        lan.push(`${selectedSquare}${square}${piece}`);
         useModal().close();">
           <NuxtImg :src="`pieces/${piece}${turn === 'w' ? 'w' : 'b'}.svg`" class="h-24 w-24" />
         </UButton>
