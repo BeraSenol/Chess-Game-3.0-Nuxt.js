@@ -11,21 +11,23 @@
     "upgrade": "npx nuxi upgrade"
   },
   "dependencies": {
-    "@nuxt/ui": "2.20.0",
-    "chess.js": "1.0.0",
-    "nuxt": "^3.15.2",
-    "pnpm": "^9.15.4",
-    "vue": "latest",
-    "vue-router": "latest"
+    "@nuxt/ui": "2.21.0",
+    "@pinia/nuxt": "0.10.1",
+    "chess.js": "1.1.0",
+    "nuxt": "^3.15.4",
+    "pinia": "^3.0.1",
+    "pnpm": "^10.6.0",
+    "vue": "^3.5.13",
+    "vue-router": "^4.5.0"
   },
   "packageManager": "pnpm@9.15.2+sha1.0ffb02f94047016ec7e088030337455b4c94bb34",
   "devDependencies": {
-    "@iconify-json/material-symbols": "^1.2.12",
-    "@nuxt/eslint": "^0.7.5",
+    "@iconify-json/material-symbols": "^1.2.15",
+    "@nuxt/eslint": "^1.1.0",
     "@nuxt/image": "1.9.0",
-    "@vueuse/nuxt": "^12.4.0",
+    "@vueuse/nuxt": "^12.8.2",
     "autoprefixer": "^10.4.20",
-    "prettier": "^3.4.2",
-    "prettier-plugin-tailwindcss": "^0.6.10"
+    "prettier": "^3.5.3",
+    "prettier-plugin-tailwindcss": "^0.6.11"
   }
 }
